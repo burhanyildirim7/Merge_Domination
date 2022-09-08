@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using DG.Tweening;
+using Facebook.Unity.Example;
 
 public class RayKodlari : MonoBehaviour
 {
     [SerializeField] GameObject _paraAlani, _geciciKonum;
-    [SerializeField] LayerMask _layerMask;
+    [SerializeField] LayerMask _layerMask,_soketLayerMask;
     private GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
+    private int _sayac,_sayac2;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +50,7 @@ public class RayKodlari : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo,float.MaxValue,_layerMask))
                 {
-                    _yakalananTurret.transform.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+                    _yakalananTurret.transform.position = new Vector3(hitInfo.point.x, 2, hitInfo.point.z);
 
 
                 }
@@ -65,13 +67,63 @@ public class RayKodlari : MonoBehaviour
 
                     }
                 }
+                if (Physics.Raycast(ray, out RaycastHit hitSoketInfo, float.MaxValue, _soketLayerMask))
+                {
+                    Debug.Log("SOKET BBULDUM");
+                    _sayac2 = 0;
+                    for (int i = 0; i < _yakalananTurret.transform.GetChild(0).transform.childCount; i++)
+                    {
+                        if (_yakalananTurret.transform.GetChild(0).GetChild(i).GetComponent<SoketKontrolEtme>()._objeYerlestirilebilir)
+                        {
+                            _sayac2++;
+                        }
+
+                    }
+                    if (_sayac2 == _yakalananTurret.transform.GetChild(0).transform.childCount)
+                    {
+                        _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._serbestAlanObjesi.SetActive(true);
+                        _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._yasakliAlanObjesi.SetActive(false);
+                    }
+                    else
+                    {
+                        _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._serbestAlanObjesi.SetActive(false);
+                        _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._yasakliAlanObjesi.SetActive(true);
+                    }
+                }
+                else
+                {
+                    _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._serbestAlanObjesi.SetActive(false);
+                    _yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._yasakliAlanObjesi.SetActive(false);
+                }
 
             }
             if (Input.GetMouseButtonUp(0))
             {
-                _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position,0.5f);
-                Debug.Log("baslangıc konumu: "+_turretinYakalandigiKonum.transform.position);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hitSoketInfo, float.MaxValue, _soketLayerMask))
+                {
+                    _sayac = 0;
+                    //hitSoketInfo.transform.GetComponent<YapbozAlaniDoluluk>()._soketDoluluk
+                    for (int i = 0; i < _yakalananTurret.transform.GetChild(0).transform.childCount; i++)
+                    {
+
+                        if (_yakalananTurret.transform.GetChild(0).GetChild(i).GetComponent<SoketKontrolEtme>()._objeYerlestirilebilir)
+                        {
+                            _sayac++;
+                        }
+
+                    }
+                    if (_sayac == _yakalananTurret.transform.GetChild(0).transform.childCount)
+                    {
+
+                        _turretinYakalandigiKonum.transform.position = new Vector3(hitSoketInfo.transform.position.x, 0, hitSoketInfo.transform.position.z);
+                    }
+                }
+
+
+                _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position, 0.5f);
                 _yakalananTurret = _geciciKonum;
+
             }
         }
     }
