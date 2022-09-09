@@ -17,10 +17,15 @@ public class BuyButtonScript : MonoBehaviour
         {
             _turretBedel.text = "$100";
             PlayerPrefs.SetInt("TurretBedelBaslangic", 1);
+
+            PlayerPrefs.SetInt("totalScore", 350);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
+            UIController.instance.SetGamePlayScoreText();
+
+            PlayerPrefs.SetInt("TurretBedel",100);
         }
         else
         {
-            _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel") + 100);
+            _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel"));
         }
     }
 
@@ -29,20 +34,30 @@ public class BuyButtonScript : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
+            Debug.Log(PlayerPrefs.GetInt("totalScore"));
             _timer = _timer + Time.deltaTime;
             if (_timer>.1f)
             {
                 _timer = 0;
                 
-                if (PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") == 3)
+
+                if (PlayerPrefs.GetInt("totalScore") < PlayerPrefs.GetInt("TurretBedel"))
                 {
                     transform.GetComponent<Button>().interactable = false;
 
                 }
                 else
                 {
-                    transform.GetComponent<Button>().interactable = true;
+                    if (PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") == 3)
+                    {
+                        transform.GetComponent<Button>().interactable = false;
 
+                    }
+                    else
+                    {
+                        transform.GetComponent<Button>().interactable = true;
+
+                    }
                 }
             }
         }
@@ -64,9 +79,13 @@ public class BuyButtonScript : MonoBehaviour
                 break;
             }
         }
-        PlayerPrefs.SetInt("TurretBedel",PlayerPrefs.GetInt("TurretBedel")+100);
-        _turretBedel.text = "$"+ (PlayerPrefs.GetInt("TurretBedel") + 100);
-    }
 
+        PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") - PlayerPrefs.GetInt("TurretBedel"));
+        UIController.instance.SetGamePlayScoreText();
+
+        PlayerPrefs.SetInt("TurretBedel",PlayerPrefs.GetInt("TurretBedel")+100);
+        _turretBedel.text = "$"+ (PlayerPrefs.GetInt("TurretBedel"));
+
+    }
 
 }
