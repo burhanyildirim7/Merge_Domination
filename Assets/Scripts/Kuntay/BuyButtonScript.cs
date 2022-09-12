@@ -18,7 +18,7 @@ public class BuyButtonScript : MonoBehaviour
             _turretBedel.text = "$100";
             PlayerPrefs.SetInt("TurretBedelBaslangic", 1);
 
-            PlayerPrefs.SetInt("totalScore", 350);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
+            PlayerPrefs.SetInt("totalScore", 3500);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
             UIController.instance.SetGamePlayScoreText();
 
             PlayerPrefs.SetInt("TurretBedel",100);
@@ -26,6 +26,7 @@ public class BuyButtonScript : MonoBehaviour
         else
         {
             _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel"));
+            PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", 0);
         }
     }
 
@@ -48,6 +49,18 @@ public class BuyButtonScript : MonoBehaviour
                 }
                 else
                 {
+                    PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", 0);
+                    for (int i = 0; i < _mergeAlaniParent.transform.childCount; i++)
+                    {
+                        if (_mergeAlaniParent.transform.GetChild(i).GetComponent<mergeAlaniDoluluk>()._doluluk == true)
+                        {
+                            PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") + 1);
+                        }
+                        else
+                        {
+
+                        }
+                    }
                     if (PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") == 3)
                     {
                         transform.GetComponent<Button>().interactable = false;
@@ -74,8 +87,7 @@ public class BuyButtonScript : MonoBehaviour
                 GameObject _newTurret = Instantiate(_level1Turret, _turretOlusturmaNoktasi.transform.position, Quaternion.identity);
                 _newTurret.transform.parent = null;
                 _newTurret.transform.localPosition = _turretOlusturmaNoktasi.transform.position ;
-                _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
-                PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", PlayerPrefs.GetInt("MergeAlaniDolulukAdeti")+1);
+                _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.1f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
                 break;
             }
         }

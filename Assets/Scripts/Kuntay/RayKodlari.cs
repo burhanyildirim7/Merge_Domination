@@ -8,7 +8,7 @@ using Facebook.Unity.Example;
 public class RayKodlari : MonoBehaviour
 {
     [SerializeField] GameObject _paraAlani, _geciciKonum;
-    [SerializeField] LayerMask _layerMask,_soketLayerMask;
+    [SerializeField] LayerMask _layerMask,_soketLayerMask,_mergeLayerMask;
     private GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
     private int _sayac,_sayac2;
@@ -119,6 +119,23 @@ public class RayKodlari : MonoBehaviour
                         _turretinYakalandigiKonum.transform.position = new Vector3(hitSoketInfo.transform.position.x, 0, hitSoketInfo.transform.position.z);
                     }
                 }
+                if (Physics.Raycast(ray, out RaycastHit hitMergeInfo, float.MaxValue, _mergeLayerMask))
+                {
+                    if (_yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._objeYerlestirilebilir)
+                    {
+                        _yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir = true;
+                        _yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._mergeTahtasinda = true;
+                        if (_yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._turretNum==2)
+                        {
+                            _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x + .5f, 0, hitMergeInfo.transform.position.z);
+                        }
+                        else
+                        {
+                            _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x, 0, hitMergeInfo.transform.position.z);
+                        }
+                    }
+                }
+
 
 
                 _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position, 0.5f);

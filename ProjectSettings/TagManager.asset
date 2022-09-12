@@ -12,6 +12,9 @@ TagManager:
   - collectible
   - elmas
   - turret
+  - soket
+  - merge
+  - warZone
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - ground
   - turret
   - soket
-  - 
-  - 
+  - merge
+  - warZone
   - 
   - 
   - 
