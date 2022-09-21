@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class NamluKontrol : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject _projectile;
 
-    // Update is called once per frame
-    void Update()
+    private GameObject _tempMermi;
+
+    public void FireProjectile()
     {
-        
+        _tempMermi = Instantiate(_projectile,transform);
     }
 }

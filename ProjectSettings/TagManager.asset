@@ -15,6 +15,9 @@ TagManager:
   - soket
   - merge
   - warZone
+  - para
+  - projectile
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -27,9 +30,9 @@ TagManager:
   - soket
   - merge
   - warZone
-  - 
-  - 
-  - 
+  - para
+  - projectile
+  - enemy
   - 
   - 
   - 
