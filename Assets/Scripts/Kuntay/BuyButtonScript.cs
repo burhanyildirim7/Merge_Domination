@@ -88,6 +88,7 @@ public class BuyButtonScript : MonoBehaviour
                 _newTurret.transform.parent = null;
                 _newTurret.transform.localPosition = _turretOlusturmaNoktasi.transform.position ;
                 _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.1f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
+                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.95f);
                 break;
             }
         }

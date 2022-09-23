@@ -65,7 +65,7 @@ Transform:
   - {fileID: 6266876797331354464}
   - {fileID: 8918083717030583661}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &3058122991206026801
 GameObject:
@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectile: {fileID: 926296033756000323, guid: 5aa7e7813f48a48cf9df5bbac2a3fcd8, type: 3}
+  _fireFX: {fileID: 193574, guid: 876f714de1a724e1d9df89dbc1246b6d, type: 3}
 --- !u!1 &5937989824822398918
 GameObject:
   m_ObjectHideFlags: 0

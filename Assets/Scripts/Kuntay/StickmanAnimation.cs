@@ -10,11 +10,11 @@ public class StickmanAnimation : MonoBehaviour
     Animator _stickmanAnimator;
 
     [SerializeField] Slider _canBari2,_canBari5;
-    [SerializeField] GameObject _moneyObject;
+    [SerializeField] GameObject _moneyObject,_splashObject;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
     public bool _isboss,_dur;
-    private int _hiz;
+    private float _hiz;
     public Slider _canBari;
 
     public bool _secildi; // kullanmayacağım ama belki kullanırız diye var. boss geldiginde sadece tek taret kilitlenmesine sebep olur görüntü güzel olmaz. 
@@ -23,9 +23,8 @@ public class StickmanAnimation : MonoBehaviour
     void Start()
     {
         _stickmanAnimator = transform.GetComponent<Animator>();
-        //if (PlayerPrefs.GetInt("enemySayac") == 5)
-            if (_isboss)
-            {
+        if (_isboss)
+        {
             _isboss = true;
             transform.localScale = new Vector3(2,2,2);
             _canBari5.gameObject.transform.parent.gameObject.SetActive(true);
@@ -53,7 +52,7 @@ public class StickmanAnimation : MonoBehaviour
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
 
-            _hiz = 2;
+            _hiz = 1.5f;
 
         }
     }
@@ -130,6 +129,7 @@ public class StickmanAnimation : MonoBehaviour
                     {
                         _tempMoney = Instantiate(_moneyObject, transform);
                         _tempMoney.transform.parent = null;
+                        _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                         _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
                         //_tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f).OnComplete(() => _tempMoney.transform.parent = null);
                     }
@@ -141,6 +141,10 @@ public class StickmanAnimation : MonoBehaviour
                     _tempMoney.transform.localScale = new Vector3(350,350,350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position,1,1,.5f);
                 }
+                _splashObject.gameObject.SetActive(true);
+                _splashObject.transform.DOScale(new Vector3(0, 0, 0), 0.01f).OnComplete(() =>
+                            _splashObject.transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f)).OnComplete(() =>
+                            _splashObject.transform.DOScale(new Vector3(0.15f, 0.15f, 0.15f), 0.3f));
                 Destroy(gameObject, 3f);
             }
         }

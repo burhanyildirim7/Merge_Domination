@@ -7,14 +7,16 @@ using UnityEngine.UI;
 public class UpgradeScript : MonoBehaviour
 {
     [SerializeField] Text _fireRateText, _incomeText,_fireRateBedel,_incomeBedel;
-
+    [SerializeField] GameObject _upgradePanel;
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetFloat("FireRate",1);
-        PlayerPrefs.SetFloat("Income", 10);
+
         if (PlayerPrefs.GetInt("UpgradeIlkSefer")==0)
         {
+            PlayerPrefs.SetFloat("EnemySpawnRate",3f);
+            PlayerPrefs.SetFloat("FireRate", 1.5f);
+            PlayerPrefs.SetFloat("Income", 10);
             PlayerPrefs.SetInt("FireRateLevel", 1);
             PlayerPrefs.SetInt("IncomeLevel", 1);
 
@@ -26,7 +28,7 @@ public class UpgradeScript : MonoBehaviour
         else
         {
             _fireRateText.text = PlayerPrefs.GetInt("FireRateLevel").ToString();
-            _incomeText.text = PlayerPrefs.GetInt("IncomeLevel").ToString();
+            _incomeText.text = "+$" + (PlayerPrefs.GetFloat("Income") - 10).ToString();
         }
     }
 
@@ -61,9 +63,9 @@ public class UpgradeScript : MonoBehaviour
 
     public void IncomeUpgrade()
     {
-        PlayerPrefs.SetFloat("Income", PlayerPrefs.GetFloat("Income") * 1.1f);
+        PlayerPrefs.SetFloat("Income", PlayerPrefs.GetFloat("Income") + 1);
         PlayerPrefs.SetInt("IncomeLevel", PlayerPrefs.GetInt("IncomeLevel")+1);
-        _incomeText.text = "LEVEL" + PlayerPrefs.GetInt("IncomeLevel").ToString();
+        _incomeText.text = "+$" + (PlayerPrefs.GetFloat("Income")-10).ToString();
 
         PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") - PlayerPrefs.GetInt("IncomeBedel"));
         UIController.instance.SetGamePlayScoreText();
@@ -74,7 +76,7 @@ public class UpgradeScript : MonoBehaviour
     public void CloseWindowButton()
     {
 
-        transform.gameObject.SetActive(false);
+        _upgradePanel.transform.gameObject.SetActive(false);
 
     }
 }

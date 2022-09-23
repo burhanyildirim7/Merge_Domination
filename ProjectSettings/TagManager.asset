@@ -18,6 +18,7 @@ TagManager:
   - para
   - projectile
   - enemy
+  - toplayici
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - para
   - projectile
   - enemy
-  - 
+  - toplayici
   - 
   - 
   - 

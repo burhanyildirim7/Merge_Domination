@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2975581557053270833}
   - component: {fileID: 2794699703800433311}
   - component: {fileID: 2210773493134195611}
+  - component: {fileID: 1892298827778918135}
   m_Layer: 11
   m_Name: moneymoney
   m_TagString: para
@@ -115,3 +116,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1892298827778918135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624166079958518500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114dac3abf1c6427faedcf98f7999a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -25,6 +25,7 @@ public class KafaKontrol : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log("FireRateCarpani: "+PlayerPrefs.GetFloat("FireRate"));
         if (GameController.instance.isContinue)
         {
             for (int i = 0; i < _targetList.Count; i++)
@@ -70,9 +71,9 @@ public class KafaKontrol : MonoBehaviour
                 if (_target.transform.GetComponent<StickmanAnimation>()._canBari.value>0)
                 {
                     transform.LookAt(_target.transform.position);
-                    if (_timer>1)
+                    if (_timer> PlayerPrefs.GetFloat("FireRate"))
                     {
-                        if (_timer2>0.2f)
+                        if (_timer2>0.2f*PlayerPrefs.GetFloat("FireRate"))
                         {
                             _timer2 = 0;
                             Atesleme();

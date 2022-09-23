@@ -7,7 +7,7 @@ using Facebook.Unity.Example;
 
 public class RayKodlari : MonoBehaviour
 {
-    [SerializeField] GameObject _paraAlani, _geciciKonum;
+    [SerializeField] GameObject _paraAlani, _geciciKonum,_paraToplayici;
     [SerializeField] LayerMask _layerMask,_soketLayerMask,_mergeLayerMask;
     private GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
@@ -58,7 +58,7 @@ public class RayKodlari : MonoBehaviour
                 {
                     if (hitParaAlani.transform.gameObject == _paraAlani)
                     {
-
+                         _paraToplayici.transform.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
                         //parayı yok et + fx instantiate et
 
                     }
