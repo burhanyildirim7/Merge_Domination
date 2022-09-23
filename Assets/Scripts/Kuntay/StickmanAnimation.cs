@@ -10,7 +10,8 @@ public class StickmanAnimation : MonoBehaviour
     Animator _stickmanAnimator;
 
     [SerializeField] Slider _canBari2,_canBari5;
-    [SerializeField] GameObject _moneyObject,_splashObject;
+    [SerializeField] GameObject _moneyObject,_splashObject,_vurulmaFX;
+    [SerializeField] Material _griMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
     public bool _isboss,_dur;
@@ -19,6 +20,7 @@ public class StickmanAnimation : MonoBehaviour
 
     public bool _secildi; // kullanmayacağım ama belki kullanırız diye var. boss geldiginde sadece tek taret kilitlenmesine sebep olur görüntü güzel olmaz. 
 
+    private bool _ilkVurulma;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,12 +64,22 @@ public class StickmanAnimation : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
-            if (_dur)
+            if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
+                if (_dur)
+                {
+                }
+                else
+                {
+                    transform.Translate(Vector3.forward * Time.deltaTime * _hiz);
+                    _stickmanAnimator.speed = 1;
+
+                }
+
             }
             else
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * _hiz);
+                _stickmanAnimator.speed = 0;
             }
         }
     }
@@ -84,6 +96,17 @@ public class StickmanAnimation : MonoBehaviour
             if (_canBari.value>0f)
             {
                 _canBari.value = _canBari.value - 1;
+                if (_ilkVurulma)
+                {
+                    _vurulmaFX.transform.GetComponent<ParticleSystem>().Play();
+
+                }
+                else
+                {
+                    _ilkVurulma = true;
+                    _vurulmaFX.gameObject.SetActive(true);
+
+                }
             }
 
             if (_isboss)
@@ -141,6 +164,8 @@ public class StickmanAnimation : MonoBehaviour
                     _tempMoney.transform.localScale = new Vector3(350,350,350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position,1,1,.5f);
                 }
+                _canBari.gameObject.transform.parent.gameObject.SetActive(false);
+                transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _griMat;
                 _splashObject.gameObject.SetActive(true);
                 _splashObject.transform.DOScale(new Vector3(0, 0, 0), 0.01f).OnComplete(() =>
                             _splashObject.transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f)).OnComplete(() =>

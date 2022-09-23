@@ -35,61 +35,68 @@ public class KafaKontrol : MonoBehaviour
                     _targetList.Remove(_targetList[i]);
                 }
             }
-            if (_locked==false)
+            if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
-                if (_targetList.Count>0)
+                if (_locked == false)
                 {
-                    for (int i = 0; i < _targetList.Count; i++)
+                    if (_targetList.Count > 0)
                     {
-                        if (_targetList[i].transform.GetComponent<StickmanAnimation>()._secildi == false)
+                        for (int i = 0; i < _targetList.Count; i++)
                         {
-                            if (_targetList[i].transform.GetComponent<StickmanAnimation>()._isboss)
+                            if (_targetList[i].transform.GetComponent<StickmanAnimation>()._secildi == false)
                             {
-                                _target = _targetList[i].gameObject;
-                                _locked = true;
-                                _timer = 0;
+                                if (_targetList[i].transform.GetComponent<StickmanAnimation>()._isboss)
+                                {
+                                    _target = _targetList[i].gameObject;
+                                    _locked = true;
+                                    _timer = 0;
+                                }
+                                else
+                                {
+                                    _targetList[i].transform.GetComponent<StickmanAnimation>()._secildi = true;
+                                    _target = _targetList[i].gameObject;
+                                    _locked = true;
+                                    _timer = 0;
+                                }
+                                break;
                             }
-                            else
-                            {
-                                _targetList[i].transform.GetComponent<StickmanAnimation>()._secildi = true;
-                                _target = _targetList[i].gameObject;
-                                _locked = true;
-                                _timer = 0;
-                            }
-                            break;
                         }
-                    }
 
-                }
-            }
-            else
-            {
-
-                _timer += Time.deltaTime;
-                _timer2 += Time.deltaTime;
-                _fireRate= PlayerPrefs.GetFloat("FireRate");
-                if (_target.transform.GetComponent<StickmanAnimation>()._canBari.value>0)
-                {
-                    transform.LookAt(_target.transform.position);
-                    if (_timer> PlayerPrefs.GetFloat("FireRate"))
-                    {
-                        if (_timer2>0.2f*PlayerPrefs.GetFloat("FireRate"))
-                        {
-                            _timer2 = 0;
-                            Atesleme();
-                            _namlusayac++;
-                        }
-                        if (_namlusayac==_namluList.Count)
-                        {
-                            _timer = 0;
-                        }
                     }
                 }
                 else
                 {
-                    _locked = false;
-                    _targetList.Remove(_target);
+
+                    _timer += Time.deltaTime;
+                    _timer2 += Time.deltaTime;
+                    _fireRate = PlayerPrefs.GetFloat("FireRate");
+                    if (_target.transform.GetComponent<StickmanAnimation>()._canBari.value > 0)
+                    {
+                        transform.LookAt(_target.transform.position);
+                        if (_timer > PlayerPrefs.GetFloat("FireRate"))
+                        {
+                            if (_timer2 > 0.2f * PlayerPrefs.GetFloat("FireRate"))
+                            {
+                                _timer2 = 0;
+                                Atesleme();
+                                _namlusayac++;
+                            }
+                            if (_namlusayac == _namluList.Count)
+                            {
+                                _timer = 0;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        _locked = false;
+                        _targetList.Remove(_target);
+                    }
                 }
+
+            }
+            else
+            {
             }
 
         }

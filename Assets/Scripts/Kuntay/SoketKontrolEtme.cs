@@ -31,28 +31,10 @@ public class SoketKontrolEtme : MonoBehaviour
             {
                 _objeYerlestirilebilir = false;
             }
-
-
         }
 
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "soket")
-        {
 
-            if (other.transform.GetComponent<YapbozAlaniDoluluk>()._soketDoluluk == false)
-            {
-                other.transform.GetComponent<YapbozAlaniDoluluk>()._soketDoluluk = true;
-            }
-            else
-            {
-              
-            }
-
-
-        }
-    }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "soket")
@@ -61,18 +43,6 @@ public class SoketKontrolEtme : MonoBehaviour
             {
                 _objeYerlestirilebilir = false;
             }
-
-
-            if (other.transform.GetComponent<YapbozAlaniDoluluk>()._soketDoluluk == true)
-            {
-                other.transform.GetComponent<YapbozAlaniDoluluk>()._soketDoluluk = false;
-            }
-            else
-            {
-
-            }
-
-
         }
     }
 

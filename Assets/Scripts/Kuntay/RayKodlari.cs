@@ -8,7 +8,7 @@ using Facebook.Unity.Example;
 public class RayKodlari : MonoBehaviour
 {
     [SerializeField] GameObject _paraAlani, _geciciKonum,_paraToplayici;
-    [SerializeField] LayerMask _layerMask,_soketLayerMask,_mergeLayerMask;
+    [SerializeField] LayerMask _layerMask,_soketLayerMask,_mergeLayerMask,_paraAlaniLayer;
     private GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
     private int _sayac,_sayac2;
@@ -47,6 +47,7 @@ public class RayKodlari : MonoBehaviour
             }
             if (Input.GetMouseButton(0))
             {
+                Debug.Log("GETMOUSEBUTTON IFI");
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo,float.MaxValue,_layerMask))
                 {
@@ -54,11 +55,13 @@ public class RayKodlari : MonoBehaviour
 
 
                 }
-                if (Physics.Raycast(ray, out RaycastHit hitParaAlani))
+                if (Physics.Raycast(ray, out RaycastHit hitParaAlani, float.MaxValue, _paraAlaniLayer))
                 {
+                    Debug.Log("PARAALANINI BULDU IFI");
                     if (hitParaAlani.transform.gameObject == _paraAlani)
                     {
-                         _paraToplayici.transform.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+                        Debug.Log("PARA TOPLUYOR IFI");
+                        _paraToplayici.transform.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
                         //parayı yok et + fx instantiate et
 
                     }
@@ -99,7 +102,8 @@ public class RayKodlari : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                _paraToplayici.transform.position = new Vector3(6,0,6);
+               Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitSoketInfo, float.MaxValue, _soketLayerMask))
                 {
                     _sayac = 0;

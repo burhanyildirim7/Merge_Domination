@@ -15,13 +15,13 @@ public class BuyButtonScript : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("TurretBedelBaslangic")==0)
         {
-            _turretBedel.text = "$100";
+            _turretBedel.text = "FREE";
             PlayerPrefs.SetInt("TurretBedelBaslangic", 1);
 
             PlayerPrefs.SetInt("totalScore", 3500);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
             UIController.instance.SetGamePlayScoreText();
 
-            PlayerPrefs.SetInt("TurretBedel",100);
+            PlayerPrefs.SetInt("TurretBedel",0);
         }
         else
         {
@@ -88,16 +88,26 @@ public class BuyButtonScript : MonoBehaviour
                 _newTurret.transform.parent = null;
                 _newTurret.transform.localPosition = _turretOlusturmaNoktasi.transform.position ;
                 _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.1f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
-                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.95f);
+                PlayerPrefs.SetInt("ButonaBasmaSayisi", PlayerPrefs.GetInt("ButonaBasmaSayisi") +1);
+                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.9f);
                 break;
             }
         }
 
         PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") - PlayerPrefs.GetInt("TurretBedel"));
         UIController.instance.SetGamePlayScoreText();
+        if (PlayerPrefs.GetInt("ButonaBasmaSayisi")>0)
+        {
+            PlayerPrefs.SetInt("TurretBedel", PlayerPrefs.GetInt("TurretBedel") + (PlayerPrefs.GetInt("ButonaBasmaSayisi") - 1) * 17 + 5);
+            _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel"));
 
-        PlayerPrefs.SetInt("TurretBedel",PlayerPrefs.GetInt("TurretBedel")+100);
-        _turretBedel.text = "$"+ (PlayerPrefs.GetInt("TurretBedel"));
+        }
+        else
+        {
+            PlayerPrefs.SetInt("TurretBedel", PlayerPrefs.GetInt("TurretBedel") + 0);
+            _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel"));
+
+        }
 
     }
 

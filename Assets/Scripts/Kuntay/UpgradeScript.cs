@@ -27,7 +27,7 @@ public class UpgradeScript : MonoBehaviour
         }
         else
         {
-            _fireRateText.text = PlayerPrefs.GetInt("FireRateLevel").ToString();
+            _fireRateText.text = "LEVEL" + PlayerPrefs.GetInt("FireRateLevel").ToString();
             _incomeText.text = "+$" + (PlayerPrefs.GetFloat("Income") - 10).ToString();
         }
     }

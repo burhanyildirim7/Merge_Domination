@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1326240817504713913}
   - component: {fileID: 6292134642402831805}
   - component: {fileID: 3496718348605323503}
+  - component: {fileID: 7356319592774546210}
   m_Layer: 0
   m_Name: Cube.007
   m_TagString: Untagged
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7356319592774546210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462309773905069255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fa4da39721a4065b25c9b921d5c9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anaRenk: {fileID: 2100000, guid: 1fd1f09cd966ff94eb6455c5aa18bc51, type: 2}
+  _griRenk: {fileID: 2100000, guid: f9f895e8b889b404d9e6e082aa1ba760, type: 2}
 --- !u!1 &5491802497895832069
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,24 +20,32 @@ public class EnemySpawnerScript : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
-            Debug.Log("enemySpawnRate: "+ PlayerPrefs.GetFloat("EnemySpawnRate"));
-            _sayac1 += Time.deltaTime;
-
-            if (_sayac1> PlayerPrefs.GetFloat("EnemySpawnRate"))
+            if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
-                _sayac1 = 0;
-                _sayac2++;
-                //_spawnPointsList[_sayac2]
-                if (_sayac2<20)
+                Debug.Log("enemySpawnRate: " + PlayerPrefs.GetFloat("EnemySpawnRate"));
+                _sayac1 += Time.deltaTime;
+
+                if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate"))
                 {
-                    _randomSayi = Random.Range(0,_spawnPointsList.Count);
-                    Instantiate(_enemyObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
+                    _sayac1 = 0;
+                    _sayac2++;
+                    //_spawnPointsList[_sayac2]
+                    if (_sayac2 < 20)
+                    {
+                        _randomSayi = Random.Range(0, _spawnPointsList.Count);
+                        Instantiate(_enemyObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
+                    }
+                    else
+                    {
+                        _sayac2 = 0;
+                        Instantiate(_bossObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
+                    }
                 }
-                else
-                {
-                    _sayac2 = 0;
-                    Instantiate(_bossObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
-                }
+
+            }
+            else
+            {
+
             }
         }
     }

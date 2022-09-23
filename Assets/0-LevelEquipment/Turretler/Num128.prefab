@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6687437758678305557}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &5168058962418949040
 GameObject:
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6687437758678305557}
   - component: {fileID: 4994399608117151702}
   - component: {fileID: 7179794845039836955}
+  - component: {fileID: 4636246504169744003}
   m_Layer: 0
   m_Name: Cube.006
   m_TagString: Untagged
@@ -115,3 +116,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4636246504169744003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5168058962418949040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fa4da39721a4065b25c9b921d5c9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anaRenk: {fileID: 2100000, guid: f5d36f45386adbb449e49ff45889e188, type: 2}
+  _griRenk: {fileID: 2100000, guid: f9f895e8b889b404d9e6e082aa1ba760, type: 2}
