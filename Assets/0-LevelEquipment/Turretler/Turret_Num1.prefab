@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1970459737086478697}
   - component: {fileID: 4398398473216941349}
   - component: {fileID: 6235760552924947897}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: YasakliAlanObjesi
-  m_TagString: turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -619,7 +619,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3462975025710587420}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SoketKontrolObjeleri
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,9 +653,9 @@ GameObject:
   - component: {fileID: 1002750149271849546}
   - component: {fileID: 6898840434160499526}
   - component: {fileID: 53157050854704678}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SerbetAlanObjesi
-  m_TagString: turret
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

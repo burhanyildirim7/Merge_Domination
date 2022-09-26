@@ -22,14 +22,13 @@ public class EnemySpawnerScript : MonoBehaviour
         {
             if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
-                Debug.Log("enemySpawnRate: " + PlayerPrefs.GetFloat("EnemySpawnRate"));
                 _sayac1 += Time.deltaTime;
 
                 if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate"))
                 {
                     _sayac1 = 0;
                     _sayac2++;
-                    //_spawnPointsList[_sayac2]
+
                     if (_sayac2 < 20)
                     {
                         _randomSayi = Random.Range(0, _spawnPointsList.Count);
@@ -41,7 +40,6 @@ public class EnemySpawnerScript : MonoBehaviour
                         Instantiate(_bossObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
                     }
                 }
-
             }
             else
             {

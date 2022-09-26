@@ -9,22 +9,17 @@ public class moneyToplamaScript : MonoBehaviour
     [SerializeField] GameObject _paraBlastFX,_paraTextCanvas,_ucusHedefObjesi;
     private bool _teksefer;
     private GameObject _tempCanvas;
-    // Start is called before the first frame update
+
     void Start()
     {
         _teksefer = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag== "toplayici" && _teksefer)
         {
+            transform.GetComponent<AudioSource>().Play();
             _teksefer = false;
             PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income")*GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
             UIController.instance.SetGamePlayScoreText();
@@ -34,7 +29,7 @@ public class moneyToplamaScript : MonoBehaviour
             Instantiate(_paraBlastFX,null).transform.position=transform.position;
             transform.DOScale(500,.3f);
             transform.DOJump(transform.position,1,1,.5f);
-            Destroy(gameObject,.5f);
+            Destroy(gameObject,.55f);
         }
     }
 }

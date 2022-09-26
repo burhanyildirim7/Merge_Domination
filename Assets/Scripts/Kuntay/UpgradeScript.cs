@@ -8,7 +8,7 @@ public class UpgradeScript : MonoBehaviour
 {
     [SerializeField] Text _fireRateText, _incomeText,_fireRateBedel,_incomeBedel;
     [SerializeField] GameObject _upgradePanel;
-    // Start is called before the first frame update
+
     void Start()
     {
 
@@ -32,7 +32,6 @@ public class UpgradeScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (PlayerPrefs.GetInt("totalScore") < PlayerPrefs.GetInt("FireRateBedel"))

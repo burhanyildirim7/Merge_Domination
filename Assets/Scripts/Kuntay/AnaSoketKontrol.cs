@@ -6,7 +6,7 @@ using UnityEngine.Animations;
 
 public class AnaSoketKontrol : MonoBehaviour
 {
-    [SerializeField] GameObject _AnaSoket;
+    [SerializeField] GameObject _AnaSoket,_generatorOpenSound,_generatorCloseSound;
     [SerializeField] Animator _GeneratorAnimator;
     public bool _SYSTEMCONTROL;
     // Start is called before the first frame update
@@ -25,11 +25,29 @@ public class AnaSoketKontrol : MonoBehaviour
             {
                 _SYSTEMCONTROL = true;
                 _GeneratorAnimator.SetBool("Run", true);
+                if (PlayerPrefs.GetInt("GeneratorSound")==0)
+                {
+                    PlayerPrefs.SetInt("GeneratorSound", 1);
+                    _generatorOpenSound.transform.GetComponent<AudioSource>().Play();
+                }
+                else
+                {
+
+                }
             }
             else
             {
                 _SYSTEMCONTROL = false;
                 _GeneratorAnimator.SetBool("Run",false);
+                if (PlayerPrefs.GetInt("GeneratorSound") == 1)
+                {
+                    PlayerPrefs.SetInt("GeneratorSound", 0);
+                    _generatorCloseSound.transform.GetComponent<AudioSource>().Play();
+                }
+                else
+                {
+
+                }
             }
 
         }

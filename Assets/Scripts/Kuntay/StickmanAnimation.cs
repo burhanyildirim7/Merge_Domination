@@ -55,7 +55,6 @@ public class StickmanAnimation : MonoBehaviour
             _stickmanAnimator.SetBool("attack", false);
 
             _hiz = 1.5f;
-
         }
     }
 
@@ -73,9 +72,7 @@ public class StickmanAnimation : MonoBehaviour
                 {
                     transform.Translate(Vector3.forward * Time.deltaTime * _hiz);
                     _stickmanAnimator.speed = 1;
-
                 }
-
             }
             else
             {
@@ -92,6 +89,7 @@ public class StickmanAnimation : MonoBehaviour
         }
         if (other.tag== "projectile")
         {
+            transform.GetComponent<AudioSource>().Play();
             Destroy(other.gameObject);
             if (_canBari.value>0f)
             {
@@ -99,13 +97,11 @@ public class StickmanAnimation : MonoBehaviour
                 if (_ilkVurulma)
                 {
                     _vurulmaFX.transform.GetComponent<ParticleSystem>().Play();
-
                 }
                 else
                 {
                     _ilkVurulma = true;
                     _vurulmaFX.gameObject.SetActive(true);
-
                 }
             }
 

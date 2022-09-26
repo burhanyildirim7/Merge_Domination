@@ -25,7 +25,6 @@ public class KafaKontrol : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("FireRateCarpani: "+PlayerPrefs.GetFloat("FireRate"));
         if (GameController.instance.isContinue)
         {
             for (int i = 0; i < _targetList.Count; i++)
@@ -61,12 +60,10 @@ public class KafaKontrol : MonoBehaviour
                                 break;
                             }
                         }
-
                     }
                 }
                 else
                 {
-
                     _timer += Time.deltaTime;
                     _timer2 += Time.deltaTime;
                     _fireRate = PlayerPrefs.GetFloat("FireRate");
@@ -93,19 +90,15 @@ public class KafaKontrol : MonoBehaviour
                         _targetList.Remove(_target);
                     }
                 }
-
             }
             else
             {
             }
-
         }
     }
 
     private void Atesleme()
     {
-
-
         if (_namlusayac==_namluList.Count)
         {
             _namlusayac = 0;

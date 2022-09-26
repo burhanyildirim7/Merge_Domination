@@ -42,7 +42,6 @@ public class TurretMergeKontrol : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("1. BOLGEDE");
         if (other.tag == "merge")
         {
             _mergeTahtası = other.gameObject;
@@ -57,22 +56,16 @@ public class TurretMergeKontrol : MonoBehaviour
         }
         if (other.tag=="turret")
         {
-            Debug.Log("2. BOLGEDE");
             if (_turretNum != 128) //   MAX TURRET MERGE LEVELİ
             {
-                Debug.Log("3. BOLGEDE");
                 if (other.transform.GetComponent<TurretMergeKontrol>()._mergeTahtasinda)
                 {
-                    Debug.Log("4. BOLGEDE");
                     if (Input.GetMouseButtonUp(0))
                     {
-                        Debug.Log("6. BOLGEDE");
                         if (other.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir)
                         {
-                            Debug.Log("7. BOLGEDE");
                             if (other.transform.GetComponent<TurretMergeKontrol>()._turretNum == _turretNum)
                             {
-                                Debug.Log("8. BOLGEDE");
                                 Destroy(other.gameObject);
                                 _geciciTurret = Instantiate(_nextTurret, transform.position, Quaternion.identity);
                                 _geciciTurret.transform.DOMove(new Vector3(_mergeTahtası.transform.position.x, 0.1f, _mergeTahtası.transform.position.z), 0.1f);

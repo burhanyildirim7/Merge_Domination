@@ -35,17 +35,14 @@ public class BuyButtonScript : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
-            Debug.Log(PlayerPrefs.GetInt("totalScore"));
-            _timer = _timer + Time.deltaTime;
+           _timer = _timer + Time.deltaTime;
             if (_timer>.1f)
             {
                 _timer = 0;
-                
 
                 if (PlayerPrefs.GetInt("totalScore") < PlayerPrefs.GetInt("TurretBedel"))
                 {
                     transform.GetComponent<Button>().interactable = false;
-
                 }
                 else
                 {
@@ -64,12 +61,10 @@ public class BuyButtonScript : MonoBehaviour
                     if (PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") == 3)
                     {
                         transform.GetComponent<Button>().interactable = false;
-
                     }
                     else
                     {
                         transform.GetComponent<Button>().interactable = true;
-
                     }
                 }
             }

@@ -7,17 +7,6 @@ public class SoketKontrolEtme : MonoBehaviour
     [SerializeField] public GameObject _serbestAlanObjesi, _yasakliAlanObjesi;
 
     public bool _objeYerlestirilebilir;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
