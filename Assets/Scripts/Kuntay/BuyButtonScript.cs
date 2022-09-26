@@ -18,7 +18,7 @@ public class BuyButtonScript : MonoBehaviour
             _turretBedel.text = "FREE";
             PlayerPrefs.SetInt("TurretBedelBaslangic", 1);
 
-            PlayerPrefs.SetInt("totalScore", 3500);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
+            PlayerPrefs.SetInt("totalScore", 0);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
             UIController.instance.SetGamePlayScoreText();
 
             PlayerPrefs.SetInt("TurretBedel",0);
@@ -84,6 +84,9 @@ public class BuyButtonScript : MonoBehaviour
                 _newTurret.transform.localPosition = _turretOlusturmaNoktasi.transform.position ;
                 _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.25f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
                 PlayerPrefs.SetInt("ButonaBasmaSayisi", PlayerPrefs.GetInt("ButonaBasmaSayisi") +1);
+
+                //SDK icindeki level takip kodu buraya yazılacak
+
                 PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.9f);
                 break;
             }

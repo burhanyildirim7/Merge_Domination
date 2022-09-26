@@ -90,6 +90,10 @@ public class KafaKontrol : MonoBehaviour
                         _targetList.Remove(_target);
                     }
                 }
+                else if (transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde==false)
+                {
+                    _locked = false;
+                }
             }
             else
             {

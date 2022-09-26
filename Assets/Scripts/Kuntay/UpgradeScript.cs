@@ -17,6 +17,7 @@ public class UpgradeScript : MonoBehaviour
             PlayerPrefs.SetFloat("EnemySpawnRate",3f);
             PlayerPrefs.SetFloat("FireRate", 1.5f);
             PlayerPrefs.SetFloat("Income", 10);
+
             PlayerPrefs.SetInt("FireRateLevel", 1);
             PlayerPrefs.SetInt("IncomeLevel", 1);
 

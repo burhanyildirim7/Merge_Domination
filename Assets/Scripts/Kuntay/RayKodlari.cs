@@ -7,9 +7,9 @@ using Facebook.Unity.Example;
 
 public class RayKodlari : MonoBehaviour
 {
-    [SerializeField] GameObject _paraAlani, _geciciKonum,_paraToplayici;
+    [SerializeField] public GameObject _paraAlani, _geciciKonum,_paraToplayici;
     [SerializeField] LayerMask _gorundlayerMask,_soketLayerMask,_mergeLayerMask,_paraAlaniLayer,_turretYakalaLayer;
-    private GameObject _yakalananTurret;
+    public GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
     private int _sayac,_sayac2;
     // Start is called before the first frame update

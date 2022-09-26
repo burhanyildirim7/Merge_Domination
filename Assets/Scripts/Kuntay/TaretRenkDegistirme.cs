@@ -39,24 +39,17 @@ public class TaretRenkDegistirme : MonoBehaviour
                 {
                     if (_conncetionParent.transform.GetChild(i).transform.GetComponent<ConnectionControl>()._generatorTemas)
                     {
-                        Debug.Log("GENERATORE TEMAS EDİYOR");
-
                         break;
                     }
                     _sayac2++;
-
-                    Debug.Log("SAYAC2: "+ _sayac2);
                 }
                 if (_sayac2== _conncetionParent.transform.childCount)
                 {
-                    Debug.Log("GENERATORE TEMAS EDEN YOK");
 
                     for (int i = 0; i < _temasEdilenObjeler.Count; i++)
                     {
                         if (_temasEdilenObjeler[i].transform.GetComponent<TaretRenkDegistirme>()._WORKING)
                         {
-                            Debug.Log("WORKINGI AKTIF ETTIM");
-
                             transform.GetComponent<TaretRenkDegistirme>()._WORKING = true;
                             break;
                         }
@@ -65,8 +58,6 @@ public class TaretRenkDegistirme : MonoBehaviour
                     }
                     if (_sayac3== _temasEdilenObjeler.Count)
                     {
-                        Debug.Log("WORKINGI AKTIF EDEMEDIM");
-
                         transform.GetComponent<TaretRenkDegistirme>()._WORKING = false;
                     }
                 }
@@ -80,6 +71,11 @@ public class TaretRenkDegistirme : MonoBehaviour
         if (other.tag=="merge")
         {
             _isMergeAlani = true;
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = true;
+        }
+        else if (other.tag=="soket")
+        {
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = true;
         }
         else
         {
@@ -90,6 +86,11 @@ public class TaretRenkDegistirme : MonoBehaviour
         if (other.tag == "merge")
         {
             _isMergeAlani = true;
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = true;
+        }
+        else if (other.tag == "soket")
+        {
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = true;
         }
         else
         {
@@ -101,6 +102,11 @@ public class TaretRenkDegistirme : MonoBehaviour
         if (other.tag == "merge")
         {
             _isMergeAlani = false;
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = false;
+        }
+        else if (other.tag == "soket")
+        {
+            transform.parent.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde = false;
         }
         else
         {

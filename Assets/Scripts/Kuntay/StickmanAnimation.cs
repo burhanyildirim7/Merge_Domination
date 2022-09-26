@@ -166,6 +166,11 @@ public class StickmanAnimation : MonoBehaviour
                 _splashObject.transform.DOScale(new Vector3(0, 0, 0), 0.01f).OnComplete(() =>
                             _splashObject.transform.DOScale(new Vector3(0.2f, 0.2f, 0.2f), 0.3f)).OnComplete(() =>
                             _splashObject.transform.DOScale(new Vector3(0.15f, 0.15f, 0.15f), 0.3f));
+
+
+                PlayerPrefs.SetInt("OldurulenDusmanSayisi", PlayerPrefs.GetInt("OldurulenDusmanSayisi")+1);
+                //SDK icindeki level takip kodu buraya yazılacak
+
                 Destroy(gameObject, 3f);
             }
         }
