@@ -21,6 +21,17 @@ public class SoketKontrolEtme : MonoBehaviour
                 _objeYerlestirilebilir = false;
             }
         }
+        else if (other.tag == "merge")
+        {
+            if (other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk == false)
+            {
+                _objeYerlestirilebilir = true;
+            }
+            else
+            {
+                _objeYerlestirilebilir = false;
+            }
+        }
 
     }
 

@@ -29,6 +29,8 @@ public class UpgradeScript : MonoBehaviour
         {
             _fireRateText.text = "LEVEL" + PlayerPrefs.GetInt("FireRateLevel").ToString();
             _incomeText.text = "+$" + (PlayerPrefs.GetFloat("Income") - 10).ToString();
+            _incomeBedel.text = "$" + (PlayerPrefs.GetInt("IncomeBedel"));
+            _fireRateBedel.text = "$" + (PlayerPrefs.GetInt("FireRateBedel"));
         }
     }
 

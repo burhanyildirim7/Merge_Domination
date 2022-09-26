@@ -18,6 +18,7 @@ public class SoketDolulukAktiflestirme : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "soket")

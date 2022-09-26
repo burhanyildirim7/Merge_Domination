@@ -5,16 +5,15 @@ using DG.Tweening;
 
 public class TurretMergeKontrol : MonoBehaviour
 {
-    [SerializeField] GameObject _nextTurret;
+    [SerializeField] GameObject _nextTurret,_mergeTahtaSorgulayici;
     [SerializeField] public int _turretNum;
-    public bool _objeYerlestirilebilir,_mergeEdilebilir,_mergeTahtasinda;
+    public bool _mergeEdilebilir, _objeYerde;
     private GameObject _mergeTahtası,_geciciTurret;
     // Start is called before the first frame update
     void Start()
     {
-        _objeYerlestirilebilir = true;
         _mergeEdilebilir = true;
-        _mergeTahtasinda = true;
+        _objeYerde = true;
     }
 
     // Update is called once per frame
@@ -25,19 +24,7 @@ public class TurretMergeKontrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "merge")
-        {
-            if (other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk == false)
-            {
-                _objeYerlestirilebilir = true;
-            }
-            else
-            {
-                _objeYerlestirilebilir = false;
 
-            }
-
-        }
 
     }
     private void OnTriggerStay(Collider other)
@@ -45,38 +32,18 @@ public class TurretMergeKontrol : MonoBehaviour
         if (other.tag == "merge")
         {
             _mergeTahtası = other.gameObject;
-            if (other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk == false)
-            {
-                other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
-            }
-            else
-            {
+            _objeYerde = true;
 
-            }
         }
-        if (other.tag=="turret")
+        else if (other.tag == "soket")
+        {
+            _objeYerde = true;
+        }
+        else if (other.tag=="turret")
         {
             if (_turretNum != 128) //   MAX TURRET MERGE LEVELİ
             {
-                if (other.transform.GetComponent<TurretMergeKontrol>()._mergeTahtasinda)
-                {
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        if (other.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir)
-                        {
-                            if (other.transform.GetComponent<TurretMergeKontrol>()._turretNum == _turretNum)
-                            {
-                                Destroy(other.gameObject);
-                                _geciciTurret = Instantiate(_nextTurret, transform.position, Quaternion.identity);
-                                _geciciTurret.transform.DOMove(new Vector3(_mergeTahtası.transform.position.x, 0.1f, _mergeTahtası.transform.position.z), 0.1f);
-                                Destroy(gameObject,0.2f);
-                            }
 
-                        }
-
-                    }
-
-                }
             }
         }
 
@@ -85,13 +52,7 @@ public class TurretMergeKontrol : MonoBehaviour
     {
         if (other.tag == "merge")
         {
-            if (_objeYerlestirilebilir == true)
-            {
-                _objeYerlestirilebilir = false;
-                other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = false;
-            }
-
-
+            _objeYerde = false;
             if (other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk == true)
             {
                 other.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = false;
@@ -100,10 +61,11 @@ public class TurretMergeKontrol : MonoBehaviour
             {
 
             }
-            _mergeTahtasinda = false;
-            _mergeEdilebilir = false;
         }
-
+        if (other.tag=="soket")
+        {
+            _objeYerde = false;
+        }
     }
 
 }

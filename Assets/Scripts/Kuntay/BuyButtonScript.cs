@@ -49,7 +49,7 @@ public class BuyButtonScript : MonoBehaviour
                     PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", 0);
                     for (int i = 0; i < _mergeAlaniParent.transform.childCount; i++)
                     {
-                        if (_mergeAlaniParent.transform.GetChild(i).GetComponent<mergeAlaniDoluluk>()._doluluk == true)
+                        if (_mergeAlaniParent.transform.GetChild(i).GetChild(0).GetComponent<mergeAlaniDoluluk>()._doluluk == true)
                         {
                             PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", PlayerPrefs.GetInt("MergeAlaniDolulukAdeti") + 1);
                         }
@@ -76,13 +76,13 @@ public class BuyButtonScript : MonoBehaviour
     {
         for (int i = 0; i < _mergeAlaniParent.transform.childCount; i++)
         {
-            if (_mergeAlaniParent.transform.GetChild(i).GetComponent<mergeAlaniDoluluk>()._doluluk == false)
+            if (_mergeAlaniParent.transform.GetChild(i).GetChild(0).GetComponent<mergeAlaniDoluluk>()._doluluk == false)
             {
-                _mergeAlaniParent.transform.GetChild(i).transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
+                _mergeAlaniParent.transform.GetChild(i).GetChild(0).transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
                 GameObject _newTurret = Instantiate(_level1Turret, _turretOlusturmaNoktasi.transform.position, Quaternion.identity);
                 _newTurret.transform.parent = null;
                 _newTurret.transform.localPosition = _turretOlusturmaNoktasi.transform.position ;
-                _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.1f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
+                _newTurret.transform.DOJump(new Vector3(_mergeAlaniParent.transform.GetChild(i).transform.position.x,0.25f, _mergeAlaniParent.transform.GetChild(i).transform.position.z), 2, 1, .5f);
                 PlayerPrefs.SetInt("ButonaBasmaSayisi", PlayerPrefs.GetInt("ButonaBasmaSayisi") +1);
                 PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.9f);
                 break;

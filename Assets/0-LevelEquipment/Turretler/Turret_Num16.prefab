@@ -406,11 +406,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4744180032431474379}
   - {fileID: 482325615349140570}
   - {fileID: 5585996335710341131}
   - {fileID: 4756136442982017789}
   - {fileID: 6349148921833408292}
-  - {fileID: 4744180032431474379}
   - {fileID: 5415277238820173644}
   - {fileID: 3304077032660682168}
   - {fileID: 929298104537706688}
@@ -497,10 +497,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextTurret: {fileID: 3077455132965526748, guid: 7efb69550d2844263a7e42af481a2771, type: 3}
+  _mergeTahtaSorgulayici: {fileID: 0}
   _turretNum: 16
-  _objeYerlestirilebilir: 0
   _mergeEdilebilir: 0
-  _mergeTahtasinda: 0
 --- !u!54 &7698151557589416407
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1413,6 +1412,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1110320002849974991, guid: 7616c2f6582634debad8abe4574e708f, type: 3}
   m_PrefabInstance: {fileID: 2500296755332411255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3927910003244043810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1454781360789446997, guid: 7616c2f6582634debad8abe4574e708f, type: 3}
+  m_PrefabInstance: {fileID: 2500296755332411255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4193984117278994273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1489,6 +1493,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6372984255440559153}
     m_Modifications:
+    - target: {fileID: 4318543413573945271, guid: 6aa45f1c273d94d019b67bd37c011d8b, type: 3}
+      propertyPath: _connectionControlObjesi
+      value: 
+      objectReference: {fileID: 3927910003244043810}
     - target: {fileID: 5171093648841090650, guid: 6aa45f1c273d94d019b67bd37c011d8b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1553,6 +1561,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6372984255440559153}
     m_Modifications:
+    - target: {fileID: 6258505652502470489, guid: 0d5146414eeb64747a79fd3a1848bc8b, type: 3}
+      propertyPath: _connectionControlObjesi
+      value: 
+      objectReference: {fileID: 3927910003244043810}
     - target: {fileID: 7345463055922106694, guid: 0d5146414eeb64747a79fd3a1848bc8b, type: 3}
       propertyPath: m_Name
       value: Gun_3lu
@@ -1617,6 +1629,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6372984255440559153}
     m_Modifications:
+    - target: {fileID: 4318543413573945271, guid: 6aa45f1c273d94d019b67bd37c011d8b, type: 3}
+      propertyPath: _connectionControlObjesi
+      value: 
+      objectReference: {fileID: 3927910003244043810}
     - target: {fileID: 5171093648841090650, guid: 6aa45f1c273d94d019b67bd37c011d8b, type: 3}
       propertyPath: m_RootOrder
       value: 2

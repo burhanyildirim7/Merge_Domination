@@ -117,8 +117,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6809850172019436}
   - {fileID: 3462975025710587420}
+  - {fileID: 6809850172019436}
   - {fileID: 5224190191139344717}
   - {fileID: 6477322501875965676}
   - {fileID: 6601913215902247003}
@@ -203,10 +203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextTurret: {fileID: 1218132434212812163, guid: c2350ebd319f245f9ac238c9a706a870, type: 3}
+  _mergeTahtaSorgulayici: {fileID: 0}
   _turretNum: 1
-  _objeYerlestirilebilir: 0
   _mergeEdilebilir: 0
-  _mergeTahtasinda: 0
 --- !u!54 &3120943906070309447
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -782,6 +781,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1num
       objectReference: {fileID: 0}
+    - target: {fileID: 5465131298082401499, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465131298082401499, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5825678272897060110, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -861,6 +868,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b114391db5794e69936b2c5bcd60c5e, type: 3}
+--- !u!1 &2554737864733940372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4462309773905069255, guid: 9b114391db5794e69936b2c5bcd60c5e, type: 3}
+  m_PrefabInstance: {fileID: 2204810628402077267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6477322501875965676 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5151306443887952063, guid: 9b114391db5794e69936b2c5bcd60c5e, type: 3}
@@ -921,6 +933,14 @@ PrefabInstance:
     - target: {fileID: 5465131298082401499, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
       propertyPath: m_Name
       value: 1num
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465131298082401499, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465131298082401499, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5825678272897060110, guid: 6d1a822a1c2f84525949842bc76d4659, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1010,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.06
       objectReference: {fileID: 0}
+    - target: {fileID: 7546780472903032397, guid: 192e4c6f8d7734e1e89bd77e00ab2a38, type: 3}
+      propertyPath: _connectionControlObjesi
+      value: 
+      objectReference: {fileID: 2554737864733940372}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 192e4c6f8d7734e1e89bd77e00ab2a38, type: 3}

@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class KafaKontrol : MonoBehaviour
 {
     [SerializeField] List<GameObject> _namluList = new List<GameObject>();
-
+    [SerializeField] GameObject _connectionControlObjesi;
     public GameObject _target;
 
     [SerializeField]private List<GameObject> _targetList = new List<GameObject>();
@@ -34,9 +34,9 @@ public class KafaKontrol : MonoBehaviour
                     _targetList.Remove(_targetList[i]);
                 }
             }
-            if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
+            if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL && _connectionControlObjesi.transform.GetComponent<TaretRenkDegistirme>()._WORKING)
             {
-                if (_locked == false)
+                if (_locked == false && transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde)
                 {
                     if (_targetList.Count > 0)
                     {
@@ -62,7 +62,7 @@ public class KafaKontrol : MonoBehaviour
                         }
                     }
                 }
-                else
+                else if (_locked == true && transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde)
                 {
                     _timer += Time.deltaTime;
                     _timer2 += Time.deltaTime;
