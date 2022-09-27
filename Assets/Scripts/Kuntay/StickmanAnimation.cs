@@ -9,12 +9,12 @@ public class StickmanAnimation : MonoBehaviour
 {
     Animator _stickmanAnimator;
 
-    [SerializeField] Slider _canBari2,_canBari5;
-    [SerializeField] GameObject _moneyObject,_splashObject,_vurulmaFX;
+    [SerializeField] Slider _canBari2, _canBari5;
+    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX;
     [SerializeField] Material _griMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
-    public bool _isboss,_dur;
+    public bool _isboss, _dur;
     private float _hiz;
     public Slider _canBari;
 
@@ -28,7 +28,7 @@ public class StickmanAnimation : MonoBehaviour
         if (_isboss)
         {
             _isboss = true;
-            transform.localScale = new Vector3(2,2,2);
+            transform.localScale = new Vector3(2, 2, 2);
             _canBari5.gameObject.transform.parent.gameObject.SetActive(true);
             _canBari2.gameObject.transform.parent.gameObject.SetActive(false);
             _canBari = _canBari5;
@@ -37,7 +37,7 @@ public class StickmanAnimation : MonoBehaviour
             _stickmanAnimator.SetBool("injuredRun", false);
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
-            _moneyPoint[0].transform.parent.transform.localScale = new Vector3(.5f,.5f,.5f);
+            _moneyPoint[0].transform.parent.transform.localScale = new Vector3(.5f, .5f, .5f);
             _hiz = 1;
         }
         else
@@ -83,15 +83,15 @@ public class StickmanAnimation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="warZone")
+        if (other.tag == "warZone")
         {
-            transform.GetChild(transform.childCount-1).gameObject.SetActive(true);
+            transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
         }
-        if (other.tag== "projectile")
+        if (other.tag == "projectile")
         {
             transform.GetComponent<AudioSource>().Play();
             Destroy(other.gameObject);
-            if (_canBari.value>0f)
+            if (_canBari.value > 0f)
             {
                 _canBari.value = _canBari.value - 1;
                 if (_ilkVurulma)
@@ -133,9 +133,9 @@ public class StickmanAnimation : MonoBehaviour
             }
 
 
-            if (_canBari.value<=0)
+            if (_canBari.value <= 0)
             {
-                _stickmanAnimator.SetBool("run",false);
+                _stickmanAnimator.SetBool("run", false);
                 _stickmanAnimator.SetBool("slowRun", false);
                 _stickmanAnimator.SetBool("injuredRun", false);
                 _stickmanAnimator.SetBool("die", true);
@@ -157,8 +157,8 @@ public class StickmanAnimation : MonoBehaviour
                 {
                     _tempMoney = Instantiate(_moneyObject, transform);
                     _tempMoney.transform.parent = null;
-                    _tempMoney.transform.localScale = new Vector3(350,350,350);
-                    _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position,1,1,.5f);
+                    _tempMoney.transform.localScale = new Vector3(350, 350, 350);
+                    _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
                 }
                 _canBari.gameObject.transform.parent.gameObject.SetActive(false);
                 transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _griMat;
@@ -168,8 +168,11 @@ public class StickmanAnimation : MonoBehaviour
                             _splashObject.transform.DOScale(new Vector3(0.15f, 0.15f, 0.15f), 0.3f));
 
 
-                PlayerPrefs.SetInt("OldurulenDusmanSayisi", PlayerPrefs.GetInt("OldurulenDusmanSayisi")+1);
+                PlayerPrefs.SetInt("OldurulenDusmanSayisi", PlayerPrefs.GetInt("OldurulenDusmanSayisi") + 1);
                 //SDK icindeki level takip kodu buraya yazılacak
+
+                AppMetrica.Instance.ReportEvent("oldurulen_dusman_sayisi - " + PlayerPrefs.GetInt("OldurulenDusmanSayisi").ToString());
+                AppMetrica.Instance.SendEventsBuffer();
 
                 Destroy(gameObject, 3f);
             }
@@ -178,7 +181,7 @@ public class StickmanAnimation : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag=="warZone")
+        if (other.tag == "warZone")
         {
             _stickmanAnimator.SetBool("run", false);
             _stickmanAnimator.SetBool("slowRun", false);

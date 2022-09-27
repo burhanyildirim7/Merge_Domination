@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 using DG.Tweening;
 using Facebook.Unity.Example;
@@ -8,11 +8,11 @@ using UnityEngine.UIElements;
 
 public class RayKodlari : MonoBehaviour
 {
-    [SerializeField] public GameObject _paraAlani, _geciciKonum,_paraToplayici;
-    [SerializeField] LayerMask _gorundlayerMask,_soketLayerMask,_mergeLayerMask,_paraAlaniLayer,_turretYakalaLayer;
+    [SerializeField] public GameObject _paraAlani, _geciciKonum, _paraToplayici;
+    [SerializeField] LayerMask _gorundlayerMask, _soketLayerMask, _mergeLayerMask, _paraAlaniLayer, _turretYakalaLayer;
     public GameObject _yakalananTurret;
     private Transform _turretinYakalandigiKonum;
-    private int _sayac,_sayac2;
+    private int _sayac, _sayac2;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +29,11 @@ public class RayKodlari : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray,out RaycastHit hitInfo, float.MaxValue, _turretYakalaLayer))
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue, _turretYakalaLayer))
                 {
-                    if (hitInfo.transform.gameObject.tag =="turret")
+                    if (hitInfo.transform.gameObject.tag == "turret")
                     {
-                        _turretinYakalandigiKonum.transform.position = new Vector3(hitInfo.transform.position.x,.25f, hitInfo.transform.position.z);
+                        _turretinYakalandigiKonum.transform.position = new Vector3(hitInfo.transform.position.x, .25f, hitInfo.transform.position.z);
                         _yakalananTurret = hitInfo.transform.gameObject;
                     }
                     else
@@ -45,7 +45,7 @@ public class RayKodlari : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo,float.MaxValue,_gorundlayerMask))
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, float.MaxValue, _gorundlayerMask))
                 {
                     _yakalananTurret.transform.position = new Vector3(hitInfo.point.x, 2, hitInfo.point.z);
                 }
@@ -105,8 +105,8 @@ public class RayKodlari : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                _paraToplayici.transform.position = new Vector3(6,0,6);
-               Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                _paraToplayici.transform.position = new Vector3(6, 0, 6);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitSoketInfo, float.MaxValue, _soketLayerMask))
                 {
                     _sayac = 0;
@@ -130,7 +130,7 @@ public class RayKodlari : MonoBehaviour
                 }
                 else if (Physics.Raycast(ray, out RaycastHit hitMergeInfo, float.MaxValue, _mergeLayerMask))
                 {
-                    if (hitMergeInfo.transform.tag=="merge")
+                    if (hitMergeInfo.transform.tag == "merge")
                     {
                         if (_yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._objeYerlestirilebilir)
                         {
