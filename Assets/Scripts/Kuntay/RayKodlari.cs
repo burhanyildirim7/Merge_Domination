@@ -4,6 +4,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using DG.Tweening;
 using Facebook.Unity.Example;
+using UnityEngine.UIElements;
 
 public class RayKodlari : MonoBehaviour
 {
@@ -119,28 +120,39 @@ public class RayKodlari : MonoBehaviour
                     if (_sayac == _yakalananTurret.transform.GetChild(0).transform.childCount)
                     {
                         _turretinYakalandigiKonum.transform.position = new Vector3(hitSoketInfo.transform.position.x, 0.25f, hitSoketInfo.transform.position.z);
+                        if (PlayerPrefs.GetInt("OnboardingDone") == 0)
+                        {
+                            GameObject.Find("OnboardingCotrol").GetComponent<OnboardingControl>()._devam2 = true;
+                        }
+
+
                     }
                 }
                 else if (Physics.Raycast(ray, out RaycastHit hitMergeInfo, float.MaxValue, _mergeLayerMask))
                 {
-                    if (_yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._objeYerlestirilebilir)
+                    if (hitMergeInfo.transform.tag=="merge")
                     {
-                        _yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir = true;
-                        if (_yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._turretNum==2)
+                        if (_yakalananTurret.transform.GetChild(0).GetChild(0).GetComponent<SoketKontrolEtme>()._objeYerlestirilebilir)
                         {
-                            _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x + .5f, 0, hitMergeInfo.transform.position.z);
-                            hitMergeInfo.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
+
+                            if (_yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._turretNum == 2)
+                            {
+                                _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x + .5f, 0, hitMergeInfo.transform.position.z);
+                                hitMergeInfo.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
+                            }
+                            else
+                            {
+                                _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x, .25f, hitMergeInfo.transform.position.z);
+                                hitMergeInfo.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
+                            }
+                            _yakalananTurret.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir = true;
                         }
-                        else
-                        {
-                            _turretinYakalandigiKonum.transform.position = new Vector3(hitMergeInfo.transform.position.x, .25f, hitMergeInfo.transform.position.z);
-                            hitMergeInfo.transform.GetComponent<mergeAlaniDoluluk>()._doluluk = true;
-                        }
+
                     }
                 }
                 else
                 {
-
+                    MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
                 }
                 _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position, 0.5f);
                 _yakalananTurret = _geciciKonum;

@@ -51,7 +51,7 @@ public class UpgradeScript : MonoBehaviour
 
     public void FireRateUpgrade()
     {
-
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
         PlayerPrefs.SetFloat("FireRate", PlayerPrefs.GetFloat("FireRate")*.95f);
         PlayerPrefs.SetInt("FireRateLevel", PlayerPrefs.GetInt("FireRateLevel")+1);
         _fireRateText.text = "LEVEL"+PlayerPrefs.GetInt("FireRateLevel").ToString();
@@ -65,6 +65,7 @@ public class UpgradeScript : MonoBehaviour
 
     public void IncomeUpgrade()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
         PlayerPrefs.SetFloat("Income", PlayerPrefs.GetFloat("Income") + 1);
         PlayerPrefs.SetInt("IncomeLevel", PlayerPrefs.GetInt("IncomeLevel")+1);
         _incomeText.text = "+$" + (PlayerPrefs.GetFloat("Income")-10).ToString();

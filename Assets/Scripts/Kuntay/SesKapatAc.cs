@@ -40,6 +40,7 @@ public class SesKapatAc : MonoBehaviour
 
     public void FlipState()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
         if (PlayerPrefs.GetInt(""+ _prefIsmi)==0)
         {
             PlayerPrefs.SetInt("" + _prefIsmi, 1);

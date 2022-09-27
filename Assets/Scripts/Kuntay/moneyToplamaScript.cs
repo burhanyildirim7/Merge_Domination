@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class moneyToplamaScript : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class moneyToplamaScript : MonoBehaviour
     {
         if (other.tag== "toplayici" && _teksefer)
         {
+            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
             transform.GetComponent<AudioSource>().Play();
             _teksefer = false;
             PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income")*GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
             UIController.instance.SetGamePlayScoreText();
             _paraTextCanvas.SetActive(true);
-            _paraTextCanvas.transform.GetChild(0).transform.GetComponent<Text>().text = "$"+((int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan)).ToString();
+            _paraTextCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = "$"+((int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan)).ToString();
             _paraTextCanvas.transform.DOLocalMove(_ucusHedefObjesi.transform.localPosition,.5f);
             Instantiate(_paraBlastFX,null).transform.position=transform.position;
             transform.DOScale(500,.3f);

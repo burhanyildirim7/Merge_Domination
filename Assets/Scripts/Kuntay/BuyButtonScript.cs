@@ -74,6 +74,13 @@ public class BuyButtonScript : MonoBehaviour
 
     public void BuyButtonActive()
     {
+        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+        if (PlayerPrefs.GetInt("OnboardingDone") == 0)
+        {
+            GameObject.Find("OnboardingCotrol").GetComponent<OnboardingControl>()._devam1 = true;
+        }
+
+        transform.GetComponent<Button>().interactable = false;
         for (int i = 0; i < _mergeAlaniParent.transform.childCount; i++)
         {
             if (_mergeAlaniParent.transform.GetChild(i).GetChild(0).GetComponent<mergeAlaniDoluluk>()._doluluk == false)
@@ -87,7 +94,7 @@ public class BuyButtonScript : MonoBehaviour
 
                 //SDK icindeki level takip kodu buraya yazılacak
 
-                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.9f);
+                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate")*0.97f);
                 break;
             }
         }
@@ -106,6 +113,7 @@ public class BuyButtonScript : MonoBehaviour
             _turretBedel.text = "$" + (PlayerPrefs.GetInt("TurretBedel"));
 
         }
+        transform.GetComponent<Button>().interactable = true;
 
     }
 

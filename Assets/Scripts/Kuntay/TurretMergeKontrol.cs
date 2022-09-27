@@ -22,46 +22,61 @@ public class TurretMergeKontrol : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (_objeYerde)
+        if (_objeYerde)
         {
-            Debug.Log("OBJE YERDE");
         }
         else
         {
-            Debug.Log("OBJE YERDE DEGİL");
-
             if (_turretNum == 64)
             {
-                Debug.Log("ELIMDEKİ OBEJENIN NUMARASI: "+64);
 
             }
             else
             {
-                Debug.Log("ELIMDEKİ OBEJENIN NUMARASI: " + _turretNum);
-
                 if (other.tag == "turret")
                 {
-                    Debug.Log("ELIMDEKİ OBJE TURRET GÖRDÜ ");
-
-                    if (_turretNum== other.gameObject.transform.GetComponent<TurretMergeKontrol>()._turretNum)
+                    if (other.transform.GetComponent<TurretMergeKontrol>()._mergeEdilebilir)
                     {
-                        Debug.Log("ELIMDEKİ OBJENIN NUMARASI İLE GÖRÜNEN TURRET NO AYNI ");
+                        if (_turretNum == other.gameObject.transform.GetComponent<TurretMergeKontrol>()._turretNum)
+                        {
+                            /*if (Input.GetMouseButtonUp(0))
+                            {
+                                _geciciTurret = Instantiate(_nextTurret, null);
+                                _geciciTurret.transform.position = other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position;
+                                _geciciTurret.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                                _geciciTurret.transform.DOScale(1, 0.2f);
+                                GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._yakalananTurret = GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._geciciKonum;
+                                Destroy(other.gameObject);
+                                Destroy(gameObject);
+                            }*/
+                            MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
+                            _geciciTurret = Instantiate(_nextTurret, null);
+                            if (_geciciTurret.transform.GetComponent<TurretMergeKontrol>()._turretNum==2)
+                            {
+                                _geciciTurret.transform.position = new Vector3(other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position.x+0.5f,
+                                    other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position.y,
+                                    other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position.z) ;
+                            }
+                            else
+                            {
+                                _geciciTurret.transform.position = other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position;
 
-                        _geciciTurret = Instantiate(_nextTurret, null);
-                        _geciciTurret.transform.position = other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position;
-                        _geciciTurret.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                        _geciciTurret.transform.DOScale(1,0.2f);
-                        Destroy(other.gameObject);
-                        Destroy(gameObject);
+                            }
+                            _geciciTurret.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                            _geciciTurret.transform.DOScale(1, 0.2f);
+                            GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._yakalananTurret = GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._geciciKonum;
+                            Destroy(other.gameObject);
+                            Destroy(gameObject);
+                        }
+                        else
+                        {
 
-                    }
-                    else
-                    {
+                        }
 
                     }
                 }
             }
-        }*/
+        }
     }
     private void OnTriggerStay(Collider other)
     {
@@ -82,51 +97,7 @@ public class TurretMergeKontrol : MonoBehaviour
             }
         }
 
-        if (_objeYerde)
-        {
-            Debug.Log("OBJE YERDE");
-        }
-        else
-        {
-            Debug.Log("OBJE YERDE DEGİL");
-
-            if (_turretNum == 64)
-            {
-                Debug.Log("ELIMDEKİ OBEJENIN NUMARASI: " + 64);
-
-            }
-            else
-            {
-                Debug.Log("ELIMDEKİ OBEJENIN NUMARASI: " + _turretNum);
-
-                if (other.tag == "turret")
-                {
-                    Debug.Log("ELIMDEKİ OBJE TURRET GÖRDÜ ");
-
-                    if (_turretNum == other.gameObject.transform.GetComponent<TurretMergeKontrol>()._turretNum)
-                    {
-                        if (Input.GetMouseButtonUp(0))
-                        {
-                            Debug.Log("ELIMDEKİ OBJENIN NUMARASI İLE GÖRÜNEN TURRET NO AYNI ");
-
-                            _geciciTurret = Instantiate(_nextTurret, null);
-                            _geciciTurret.transform.position = other.gameObject.transform.GetComponent<TurretMergeKontrol>().transform.position;
-                            _geciciTurret.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                            _geciciTurret.transform.DOScale(1, 0.2f);
-                            GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._yakalananTurret= GameObject.Find("RAY_CONTROLLER").transform.GetComponent<RayKodlari>()._geciciKonum;
-                            Destroy(other.gameObject);
-                            Destroy(gameObject);
-
-                        }
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-        }
+        
 
     }
     private void OnTriggerExit(Collider other)
