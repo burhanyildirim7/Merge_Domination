@@ -181,7 +181,7 @@ public class StickmanAnimation : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "warZone")
+        if (other.tag == "Finish")
         {
             _stickmanAnimator.SetBool("run", false);
             _stickmanAnimator.SetBool("slowRun", false);

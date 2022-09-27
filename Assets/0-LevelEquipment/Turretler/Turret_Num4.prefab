@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextTurret: {fileID: 129870377130375743, guid: c449badd044bb4cbc8aed1b582bb280f, type: 3}
-  _mergeTahtaSorgulayici: {fileID: 0}
   _turretNum: 4
   _mergeEdilebilir: 0
+  _objeYerde: 0
 --- !u!54 &4680037301135505309
 Rigidbody:
   m_ObjectHideFlags: 0

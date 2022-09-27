@@ -42,10 +42,18 @@ public class UpgradeScript : MonoBehaviour
             _fireRateText.transform.parent.transform.GetComponent<Button>().interactable = false;
 
         }
+        else
+        {
+            _fireRateText.transform.parent.transform.GetComponent<Button>().interactable = true;
+        }
         if (PlayerPrefs.GetInt("totalScore") < PlayerPrefs.GetInt("IncomeBedel"))
         {
             _incomeText.transform.parent.transform.GetComponent<Button>().interactable = false;
 
+        }
+        else
+        {
+            _incomeText.transform.parent.transform.GetComponent<Button>().interactable = true;
         }
     }
 

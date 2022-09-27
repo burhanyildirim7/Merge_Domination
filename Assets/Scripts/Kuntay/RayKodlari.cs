@@ -53,7 +53,7 @@ public class RayKodlari : MonoBehaviour
                 {
                     if (hitParaAlani.transform.gameObject == _paraAlani)
                     {
-                        _paraToplayici.transform.position = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+                        _paraToplayici.transform.position = new Vector3(hitParaAlani.point.x, 0, hitParaAlani.point.z);
                     }
                     else
                     {
@@ -154,7 +154,7 @@ public class RayKodlari : MonoBehaviour
                 {
                     MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
                 }
-                _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position, 0.5f);
+                _yakalananTurret.transform.DOMove(_turretinYakalandigiKonum.position, 0.4f);
                 _yakalananTurret = _geciciKonum;
             }
         }

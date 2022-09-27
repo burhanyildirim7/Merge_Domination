@@ -105,7 +105,7 @@ public class BuyButtonScript : MonoBehaviour
                 AppMetrica.Instance.ReportEvent("buton_basma_sayisi - " + PlayerPrefs.GetInt("ButonaBasmaSayisi").ToString());
                 AppMetrica.Instance.SendEventsBuffer();
 
-                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate") * 0.97f);
+                PlayerPrefs.SetFloat("EnemySpawnRate", PlayerPrefs.GetFloat("EnemySpawnRate") * 0.93f);
                 break;
             }
         }

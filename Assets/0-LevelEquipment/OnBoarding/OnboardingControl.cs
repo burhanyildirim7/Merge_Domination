@@ -13,6 +13,7 @@ public class OnboardingControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         if (PlayerPrefs.GetInt("OnboardingDone")==1)
         {
             _panel1.SetActive(false);
@@ -23,8 +24,7 @@ public class OnboardingControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameController.instance.isContinue)
-        {
+
             if (_devam1==false)
             {
                 _panel1.SetActive(true);
@@ -52,7 +52,7 @@ public class OnboardingControl : MonoBehaviour
                 }
             }
 
-        }
+
         
     }
 

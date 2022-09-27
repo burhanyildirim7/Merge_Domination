@@ -1275,9 +1275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextTurret: {fileID: 9119110142646280307}
-  _mergeTahtaSorgulayici: {fileID: 0}
   _turretNum: 128
   _mergeEdilebilir: 0
+  _objeYerde: 0
 --- !u!1001 &235006759556617791
 PrefabInstance:
   m_ObjectHideFlags: 0
