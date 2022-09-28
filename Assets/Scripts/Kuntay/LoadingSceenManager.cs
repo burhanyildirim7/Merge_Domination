@@ -32,7 +32,7 @@ public class LoadingSceenManager : MonoBehaviour
         {
 
             progressBar.value = async.progress;
-            progressValueText.text = "%"+((progressBar.value)/111).ToString();
+            progressValueText.text = "%"+((int)((progressBar.value)*112)).ToString();
             yield return null;
 
         }
