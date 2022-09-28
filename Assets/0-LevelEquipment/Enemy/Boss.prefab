@@ -5074,7 +5074,10 @@ MonoBehaviour:
   _moneyObject: {fileID: 3624166079958518500, guid: 98d895b5802c5464bab9e018ab0ef14f, type: 3}
   _splashObject: {fileID: 8368422060469211970}
   _vurulmaFX: {fileID: 8858506606750453553}
+  _parentObject: {fileID: 0}
+  _moneyparentObject: {fileID: 0}
   _griMat: {fileID: 2100000, guid: f9f895e8b889b404d9e6e082aa1ba760, type: 2}
+  _kirmiziMat: {fileID: 2100000, guid: 1fd1f09cd966ff94eb6455c5aa18bc51, type: 2}
   _moneyPoint:
   - {fileID: 8776417443702146818}
   - {fileID: 4600697982757447462}

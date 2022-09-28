@@ -11,7 +11,7 @@ public class StickmanAnimation : MonoBehaviour
 
     [SerializeField] Slider _canBari2, _canBari5;
     [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX,_parentObject, _moneyparentObject;
-    [SerializeField] Material _griMat;
+    [SerializeField] Material _griMat,_kirmiziMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
     public bool _isboss, _dur;
@@ -214,6 +214,7 @@ public class StickmanAnimation : MonoBehaviour
     {
         transform.parent = _parentObject.transform;
         transform.localPosition = Vector3.zero;
+        transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _kirmiziMat;
         gameObject.SetActive(false);
     }
 }
