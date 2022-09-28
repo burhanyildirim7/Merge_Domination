@@ -35,7 +35,7 @@ public class EnemySpawnerScript : MonoBehaviour
 
                 if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate")/5)
                 {
-                    if (_moneyList.Count < 400)
+                    if (_moneyList.Count < 750)
                     {
                         _moneyStackParent[0].gameObject.GetComponent<moneyToplamaScript>().OtoToplanma();
                         
