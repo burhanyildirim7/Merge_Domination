@@ -39,6 +39,7 @@ public class moneyToplamaScript : MonoBehaviour
     private void paraGeriDonme()
     {
         transform.parent = _parentObject.transform;
+        transform.parent.parent.GetComponent<EnemySpawnerScript>()._moneyList.Add(transform.gameObject);
         transform.localPosition = Vector3.zero;
         gameObject.SetActive(false);
     }

@@ -10,7 +10,7 @@ public class StickmanAnimation : MonoBehaviour
     Animator _stickmanAnimator;
 
     [SerializeField] Slider _canBari2, _canBari5;
-    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX,_parentObject, _moneyparentObject;
+    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX,_parentObject;
     [SerializeField] Material _griMat,_kirmiziMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
@@ -153,13 +153,15 @@ public class StickmanAnimation : MonoBehaviour
                         _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
                         */
 
-                        _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
-                        _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                        _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject.SetActive(true);
+                        _tempMoney = _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject;
+                        _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList.RemoveAt(0);
                         _tempMoney.transform.parent = transform;
                         _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                         _tempMoney.transform.parent = null;
                         _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                         _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
+
                     }
                 }
                 else
@@ -169,15 +171,16 @@ public class StickmanAnimation : MonoBehaviour
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
                     */
-                    _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
-                    _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                    _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject.SetActive(true);
+                    _tempMoney = _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject;
+                    _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList.RemoveAt(0);
                     _tempMoney.transform.parent = transform;
                     _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                     _tempMoney.transform.parent = null;
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
                 }
-                _canBari.gameObject.transform.parent.gameObject.SetActive(false);
+                _canBari.gameObject.transform.parent.transform.gameObject.SetActive(false);
                 transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _griMat;
                 _splashObject.gameObject.SetActive(true);
                 _splashObject.transform.DOScale(new Vector3(0, 0, 0), 0.01f).OnComplete(() =>
