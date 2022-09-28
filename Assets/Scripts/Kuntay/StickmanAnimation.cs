@@ -161,6 +161,7 @@ public class StickmanAnimation : MonoBehaviour
                         _tempMoney.transform.parent = null;
                         _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                         _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
+                        _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyStackParent.Add(_tempMoney.gameObject);
 
                     }
                 }
@@ -179,6 +180,8 @@ public class StickmanAnimation : MonoBehaviour
                     _tempMoney.transform.parent = null;
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
+                    _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyStackParent.Add(_tempMoney.gameObject);
+
                 }
                 _canBari.gameObject.transform.parent.transform.gameObject.SetActive(false);
                 transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _griMat;

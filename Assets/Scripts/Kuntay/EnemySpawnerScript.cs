@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class EnemySpawnerScript : MonoBehaviour
 {
-    [SerializeField] GameObject _enemyObject,_bossObject;
+    [SerializeField] GameObject _enemyObject, _bossObject;
     [SerializeField] public List<GameObject> _spawnPointsList = new List<GameObject>(),
         _enemyList = new List<GameObject>(),
         _bossList = new List<GameObject>(),
-        _moneyList = new List<GameObject>();
+        _moneyList = new List<GameObject>(),
+        _moneyStackParent = new List<GameObject>();
 
     private float _sayac1,_sayac2;
     private int _randomSayi;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -26,6 +27,15 @@ public class EnemySpawnerScript : MonoBehaviour
             if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
                 _sayac1 += Time.deltaTime;
+
+                if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate")/5)
+                {
+                    if (_moneyList.Count < 400)
+                    {
+                        _moneyStackParent[0].gameObject.GetComponent<moneyToplamaScript>().OtoToplanma();
+                        _moneyStackParent.RemoveAt(0);
+                    }
+                }
 
                 if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate"))
                 {
@@ -54,6 +64,7 @@ public class EnemySpawnerScript : MonoBehaviour
             {
 
             }
+
         }
     }
 }
