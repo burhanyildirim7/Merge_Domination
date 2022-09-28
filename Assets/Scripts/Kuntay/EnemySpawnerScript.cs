@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
     [SerializeField] GameObject _enemyObject,_bossObject;
-    [SerializeField] List<GameObject> _spawnPointsList = new List<GameObject>(),
+    [SerializeField] public List<GameObject> _spawnPointsList = new List<GameObject>(),
         _enemyList = new List<GameObject>(),
         _bossList = new List<GameObject>(),
         _moneyList = new List<GameObject>();

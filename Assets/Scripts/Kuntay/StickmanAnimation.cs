@@ -213,6 +213,16 @@ public class StickmanAnimation : MonoBehaviour
     private void _karakteriGeriAl()
     {
         transform.parent = _parentObject.transform;
+        if (_isboss)
+        {
+            transform.parent.parent.GetComponent<EnemySpawnerScript>()._bossList.Add(transform.gameObject);
+
+        }
+        else
+        {
+            transform.parent.parent.GetComponent<EnemySpawnerScript>()._enemyList.Add(transform.gameObject);
+
+        }
         transform.localPosition = Vector3.zero;
         transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _kirmiziMat;
         gameObject.SetActive(false);
