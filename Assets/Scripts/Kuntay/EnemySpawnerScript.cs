@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
     [SerializeField] GameObject _enemyObject, _bossObject;
-    [SerializeField] public List<GameObject> _spawnPointsList = new List<GameObject>(),
+    [SerializeField]
+    public List<GameObject> _spawnPointsList = new List<GameObject>(),
         _enemyList = new List<GameObject>(),
         _bossList = new List<GameObject>(),
         _moneyList = new List<GameObject>(),
         _moneyStackParent = new List<GameObject>();
 
-    private float _sayac1,_sayac2;
+    private float _sayac1, _sayac2;
     private int _randomSayi;
     // Start is called before the first frame update
     void Start()
@@ -22,23 +23,25 @@ public class EnemySpawnerScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("EnemySpawnRate : "+PlayerPrefs.GetFloat("EnemySpawnRate"));
+        Debug.Log("EnemySpawnRate : " + PlayerPrefs.GetFloat("EnemySpawnRate"));
+        /*
         if (PlayerPrefs.GetFloat("EnemySpawnRate")<0.2f)
         {
             PlayerPrefs.SetFloat("EnemySpawnRate",.2f);
         }
+        */
         if (GameController.instance.isContinue)
         {
             if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
                 _sayac1 += Time.deltaTime;
 
-                if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate")/5)
+                if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate") / 5)
                 {
                     if (_moneyList.Count < 750)
                     {
                         _moneyStackParent[0].gameObject.GetComponent<moneyToplamaScript>().OtoToplanma();
-                        
+
                     }
                 }
 
