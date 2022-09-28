@@ -8,34 +8,6 @@ using TMPro;
 public class moneyToplamaScript : MonoBehaviour
 {
     [SerializeField] GameObject _paraBlastFX,_paraTextCanvas,_ucusHedefObjesi,_parentObject;
-    private bool _teksefer;
-    private GameObject _tempCanvas;
-    private float _sayac;
-    void Start()
-    {
-        _teksefer = true;
-    }
-
-   /* private void Update()
-    {
-        if (GameController.instance.isContinue)
-        {
-            _sayac += Time.deltaTime;
-            if (_sayac> PlayerPrefs.GetFloat("EnemySpawnRate"))
-            {
-                _sayac = 0;
-                if (transform.parent==null)
-                {
-                    if (_parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList.Count < 800)
-                    {
-                        _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._otoCollectMoneyList.Add(transform.gameObject);
-                    }
-
-                }
-            }
-
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,7 +25,6 @@ public class moneyToplamaScript : MonoBehaviour
             transform.DOScale(500,.3f);
             transform.DOJump(transform.position,1,1,.5f);
             Invoke("paraGeriDonme", .55f);
-            //Destroy(gameObject,.55f);
         }
     }
 
@@ -63,6 +34,8 @@ public class moneyToplamaScript : MonoBehaviour
         transform.parent = _parentObject.transform;
         transform.parent.parent.GetComponent<EnemySpawnerScript>()._moneyList.Add(transform.gameObject);
         transform.localPosition = Vector3.zero;
+        _paraTextCanvas.transform.localPosition = Vector3.zero;
+        _paraTextCanvas.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -79,6 +52,5 @@ public class moneyToplamaScript : MonoBehaviour
         transform.DOScale(500, .3f);
         transform.DOJump(transform.position, 1, 1, .5f);
         Invoke("paraGeriDonme", .55f);
-
     }
 }

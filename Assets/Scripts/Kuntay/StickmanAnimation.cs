@@ -232,6 +232,10 @@ public class StickmanAnimation : MonoBehaviour
             _stickmanAnimator.SetBool("injuredRun", false);
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
+            _canBari5.value = 10;
+            _canBari2.value = 2;
+            _canBari.value = 10;
+            _canBari.gameObject.transform.parent.transform.gameObject.SetActive(true);
 
         }
         else
@@ -242,6 +246,10 @@ public class StickmanAnimation : MonoBehaviour
             _stickmanAnimator.SetBool("injuredRun", false);
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
+            _canBari5.value = 10;
+            _canBari2.value = 2;
+            _canBari.value = 2;
+            _canBari.gameObject.transform.parent.transform.gameObject.SetActive(true);
 
         }
         transform.localPosition = Vector3.zero;
