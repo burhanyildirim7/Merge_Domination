@@ -10,7 +10,7 @@ public class StickmanAnimation : MonoBehaviour
     Animator _stickmanAnimator;
 
     [SerializeField] Slider _canBari2, _canBari5;
-    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX;
+    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX,_parentObject, _moneyparentObject;
     [SerializeField] Material _griMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
@@ -146,16 +146,31 @@ public class StickmanAnimation : MonoBehaviour
                 {
                     for (int i = 0; i < _moneyPoint.Count; i++)
                     {
+                        /*
                         _tempMoney = Instantiate(_moneyObject, transform);
                         _tempMoney.transform.parent = null;
                         _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                         _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
-                        //_tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f).OnComplete(() => _tempMoney.transform.parent = null);
+                        */
+
+                        _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
+                        _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                        _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
+                        _tempMoney.transform.parent = null;
+                        _tempMoney.transform.localScale = new Vector3(350, 350, 350);
+                        _tempMoney.transform.DOLocalJump(_moneyPoint[i].transform.position, 1, 1, .5f);
                     }
                 }
                 else
-                {
+                {/*
                     _tempMoney = Instantiate(_moneyObject, transform);
+                    _tempMoney.transform.parent = null;
+                    _tempMoney.transform.localScale = new Vector3(350, 350, 350);
+                    _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
+                    */
+                    _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
+                    _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                    _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                     _tempMoney.transform.parent = null;
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);
                     _tempMoney.transform.DOLocalJump(_moneyPoint[0].transform.position, 1, 1, .5f);
@@ -174,7 +189,8 @@ public class StickmanAnimation : MonoBehaviour
                 AppMetrica.Instance.ReportEvent("oldurulen_dusman_sayisi - " + PlayerPrefs.GetInt("OldurulenDusmanSayisi").ToString());
                 AppMetrica.Instance.SendEventsBuffer();
 
-                Destroy(gameObject, 3f);
+                Invoke("_karakteriGeriAl",3f);
+                //Destroy(gameObject, 3f);
             }
         }
     }
@@ -192,4 +208,10 @@ public class StickmanAnimation : MonoBehaviour
         }
     }
 
+    private void _karakteriGeriAl()
+    {
+        transform.parent = _parentObject.transform;
+        transform.localPosition = Vector3.zero;
+        gameObject.SetActive(false);
+    }
 }

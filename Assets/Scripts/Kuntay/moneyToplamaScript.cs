@@ -7,7 +7,7 @@ using TMPro;
 
 public class moneyToplamaScript : MonoBehaviour
 {
-    [SerializeField] GameObject _paraBlastFX,_paraTextCanvas,_ucusHedefObjesi;
+    [SerializeField] GameObject _paraBlastFX,_paraTextCanvas,_ucusHedefObjesi,_parentObject;
     private bool _teksefer;
     private GameObject _tempCanvas;
 
@@ -31,7 +31,15 @@ public class moneyToplamaScript : MonoBehaviour
             Instantiate(_paraBlastFX,null).transform.position=transform.position;
             transform.DOScale(500,.3f);
             transform.DOJump(transform.position,1,1,.5f);
+            Invoke("paraGeriDonme", .55f);
             Destroy(gameObject,.55f);
         }
+    }
+
+    private void paraGeriDonme()
+    {
+        transform.parent = _parentObject.transform;
+        transform.localPosition = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }

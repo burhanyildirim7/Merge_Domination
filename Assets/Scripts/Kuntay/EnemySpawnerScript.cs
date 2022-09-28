@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
     [SerializeField] GameObject _enemyObject,_bossObject;
-    [SerializeField] List<GameObject> _spawnPointsList = new List<GameObject>();
+    [SerializeField] List<GameObject> _spawnPointsList = new List<GameObject>(),
+        _enemyList = new List<GameObject>(),
+        _bossList = new List<GameObject>(),
+        _moneyList = new List<GameObject>();
 
     private float _sayac1,_sayac2;
     private int _randomSayi;
@@ -32,12 +35,18 @@ public class EnemySpawnerScript : MonoBehaviour
                     if (_sayac2 < 20)
                     {
                         _randomSayi = Random.Range(0, _spawnPointsList.Count);
-                        Instantiate(_enemyObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
+                        _enemyList[0].gameObject.SetActive(true);
+                        _enemyList[0].transform.position = _spawnPointsList[_randomSayi].transform.position;
+                        _enemyList[0].transform.parent = null;
+                        _enemyList.RemoveAt(0);
                     }
                     else
                     {
                         _sayac2 = 0;
-                        Instantiate(_bossObject, null).transform.position = _spawnPointsList[_randomSayi].transform.position;
+                        _bossList[0].gameObject.SetActive(true);
+                        _bossList[0].transform.position = _spawnPointsList[_randomSayi].transform.position;
+                        _bossList[0].transform.parent = null;
+                        _bossList.RemoveAt(0);
                     }
                 }
             }
