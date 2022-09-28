@@ -159,6 +159,7 @@ public class StickmanAnimation : MonoBehaviour
                         _tempMoney = _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject;
                         _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList.RemoveAt(0);
                         _tempMoney.transform.parent = transform;
+                        _tempMoney.transform.GetComponent<BoxCollider>().enabled = true;
                         _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                         _tempMoney.transform.parent = null;
                         _tempMoney.transform.localScale = new Vector3(350, 350, 350);
@@ -178,6 +179,7 @@ public class StickmanAnimation : MonoBehaviour
                     _tempMoney = _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList[0].gameObject;
                     _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyList.RemoveAt(0);
                     _tempMoney.transform.parent = transform;
+                    _tempMoney.transform.GetComponent<BoxCollider>().enabled = true;
                     _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                     _tempMoney.transform.parent = null;
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);

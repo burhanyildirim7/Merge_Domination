@@ -39,11 +39,11 @@ public class moneyToplamaScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag== "toplayici" && _teksefer)
+        if (other.tag== "toplayici")
         {
             MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
             transform.GetComponent<AudioSource>().Play();
-            _teksefer = false;
+            transform.GetComponent<BoxCollider>().enabled = false;
             PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income")*GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
             UIController.instance.SetGamePlayScoreText();
             _paraTextCanvas.SetActive(true);
@@ -68,9 +68,8 @@ public class moneyToplamaScript : MonoBehaviour
 
     public void OtoToplanma()
     {
-        MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
         transform.GetComponent<AudioSource>().Play();
-        _teksefer = false;
+        transform.GetComponent<BoxCollider>().enabled = false;
         PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
         UIController.instance.SetGamePlayScoreText();
         _paraTextCanvas.SetActive(true);

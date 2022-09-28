@@ -24,26 +24,26 @@ public class EnemySpawnerScript : MonoBehaviour
     void FixedUpdate()
     {
         Debug.Log("EnemySpawnRate : " + PlayerPrefs.GetFloat("EnemySpawnRate"));
-        /*
+        
         if (PlayerPrefs.GetFloat("EnemySpawnRate")<0.2f)
         {
             PlayerPrefs.SetFloat("EnemySpawnRate",.2f);
         }
-        */
+        
         if (GameController.instance.isContinue)
         {
             if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
             {
                 _sayac1 += Time.deltaTime;
 
-                if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate") / 5)
+                /*if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate") / 5)
                 {
                     if (_moneyList.Count < 750)
                     {
                         _moneyStackParent[0].gameObject.GetComponent<moneyToplamaScript>().OtoToplanma();
 
                     }
-                }
+                }*/
 
                 if (_sayac1 > PlayerPrefs.GetFloat("EnemySpawnRate"))
                 {
