@@ -30,7 +30,6 @@ public class mergeAlaniDoluluk : MonoBehaviour
             }
 
         }
-        Debug.Log("TurretGetir" + _soketNumber + " : " + PlayerPrefs.GetInt("TurretGetir" + _soketNumber));
 
     }
 

@@ -5037,7 +5037,7 @@ BoxCollider:
   m_GameObject: {fileID: 9122206374029073883}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5, y: 2, z: 0.5}
   m_Center: {x: 0, y: 1, z: 0}
@@ -5075,7 +5075,6 @@ MonoBehaviour:
   _splashObject: {fileID: 8368422060469211970}
   _vurulmaFX: {fileID: 8858506606750453553}
   _parentObject: {fileID: 0}
-  _moneyparentObject: {fileID: 0}
   _griMat: {fileID: 2100000, guid: f9f895e8b889b404d9e6e082aa1ba760, type: 2}
   _kirmiziMat: {fileID: 2100000, guid: 1fd1f09cd966ff94eb6455c5aa18bc51, type: 2}
   _moneyPoint:

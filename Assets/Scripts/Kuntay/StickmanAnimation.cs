@@ -87,6 +87,7 @@ public class StickmanAnimation : MonoBehaviour
         {
             transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
         }
+
         if (other.tag == "projectile")
         {
             transform.GetComponent<AudioSource>().Play();
@@ -135,6 +136,7 @@ public class StickmanAnimation : MonoBehaviour
 
             if (_canBari.value <= 0)
             {
+                transform.GetComponent<BoxCollider>().enabled = false;
                 _stickmanAnimator.SetBool("run", false);
                 _stickmanAnimator.SetBool("slowRun", false);
                 _stickmanAnimator.SetBool("injuredRun", false);
@@ -219,14 +221,25 @@ public class StickmanAnimation : MonoBehaviour
     private void _karakteriGeriAl()
     {
         transform.parent = _parentObject.transform;
+        //_dur = false;
         if (_isboss)
         {
             transform.parent.parent.GetComponent<EnemySpawnerScript>()._bossList.Add(transform.gameObject);
+            _stickmanAnimator.SetBool("run", false);
+            _stickmanAnimator.SetBool("slowRun", true);
+            _stickmanAnimator.SetBool("injuredRun", false);
+            _stickmanAnimator.SetBool("die", false);
+            _stickmanAnimator.SetBool("attack", false);
 
         }
         else
         {
             transform.parent.parent.GetComponent<EnemySpawnerScript>()._enemyList.Add(transform.gameObject);
+            _stickmanAnimator.SetBool("run", true);
+            _stickmanAnimator.SetBool("slowRun", false);
+            _stickmanAnimator.SetBool("injuredRun", false);
+            _stickmanAnimator.SetBool("die", false);
+            _stickmanAnimator.SetBool("attack", false);
 
         }
         transform.localPosition = Vector3.zero;

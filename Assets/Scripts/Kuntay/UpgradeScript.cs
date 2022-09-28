@@ -67,7 +67,7 @@ public class UpgradeScript : MonoBehaviour
         PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") - PlayerPrefs.GetInt("FireRateBedel"));
         UIController.instance.SetGamePlayScoreText();
 
-        PlayerPrefs.SetInt("FireRateBedel", PlayerPrefs.GetInt("FireRateBedel") + 100);
+        PlayerPrefs.SetInt("FireRateBedel", PlayerPrefs.GetInt("FireRateBedel") + (PlayerPrefs.GetInt("FireRateLevel") -1)*100 + 100);
         _fireRateBedel.text = "$" + (PlayerPrefs.GetInt("FireRateBedel"));
     }
 
@@ -81,7 +81,7 @@ public class UpgradeScript : MonoBehaviour
         PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") - PlayerPrefs.GetInt("IncomeBedel"));
         UIController.instance.SetGamePlayScoreText();
 
-        PlayerPrefs.SetInt("IncomeBedel", PlayerPrefs.GetInt("IncomeBedel") + 100);
+        PlayerPrefs.SetInt("IncomeBedel", PlayerPrefs.GetInt("IncomeBedel") + +(PlayerPrefs.GetInt("IncomeLevel") - 1) * 100 + 100);
         _incomeBedel.text = "$" + (PlayerPrefs.GetInt("IncomeBedel"));
     }
     public void CloseWindowButton()

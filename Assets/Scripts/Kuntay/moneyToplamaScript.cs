@@ -59,6 +59,7 @@ public class moneyToplamaScript : MonoBehaviour
 
     private void paraGeriDonme()
     {
+        _parentObject.transform.parent.GetComponent<EnemySpawnerScript>()._moneyStackParent.RemoveAt(0);
         transform.parent = _parentObject.transform;
         transform.parent.parent.GetComponent<EnemySpawnerScript>()._moneyList.Add(transform.gameObject);
         transform.localPosition = Vector3.zero;

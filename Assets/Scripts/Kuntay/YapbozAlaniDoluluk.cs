@@ -12,7 +12,6 @@ public class YapbozAlaniDoluluk : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("OyunIlkKezAcildi"  + _soketNumber )== 0)
         {
-            Debug.Log("Pref Ilkkez Acma" + _soketNumber);
             PlayerPrefs.SetInt("OyunIlkKezAcildi" + _soketNumber, 1);
             PlayerPrefs.SetInt("TurretGetir" + _soketNumber, 12);
         }
@@ -20,8 +19,6 @@ public class YapbozAlaniDoluluk : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("TurretGetir" + _soketNumber) < 12)
             {
-                Debug.Log("lülülülül");
-
                 Instantiate(GameObject.Find("SOKETLER_PARENT").transform.GetComponent<PlayerPrefKontrol>()._turrets[PlayerPrefs.GetInt("TurretGetir" + _soketNumber)], null).transform.position =
         new Vector3(transform.position.x, 0.25f, transform.position.z);
             }
@@ -31,7 +28,6 @@ public class YapbozAlaniDoluluk : MonoBehaviour
             }
 
         }
-        Debug.Log("TurretGetir" + _soketNumber + " : " + PlayerPrefs.GetInt("TurretGetir" + _soketNumber));
 
     }
      void Update()
