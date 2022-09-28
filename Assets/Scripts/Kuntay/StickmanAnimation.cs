@@ -155,6 +155,7 @@ public class StickmanAnimation : MonoBehaviour
 
                         _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
                         _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                        _tempMoney.transform.parent = transform;
                         _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                         _tempMoney.transform.parent = null;
                         _tempMoney.transform.localScale = new Vector3(350, 350, 350);
@@ -170,6 +171,7 @@ public class StickmanAnimation : MonoBehaviour
                     */
                     _moneyparentObject.transform.GetChild(0).gameObject.SetActive(true);
                     _tempMoney = _moneyparentObject.transform.GetChild(0).gameObject;
+                    _tempMoney.transform.parent = transform;
                     _tempMoney.transform.localPosition = new Vector3(0, .25f, 0);
                     _tempMoney.transform.parent = null;
                     _tempMoney.transform.localScale = new Vector3(350, 350, 350);
