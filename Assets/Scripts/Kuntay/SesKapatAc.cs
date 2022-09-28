@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SesKapatAc : MonoBehaviour
 {
-    [SerializeField] GameObject _opened, _closed,_temaSoundObject,_mainCamera;
+    [SerializeField] GameObject _opened, _closed,_temaSoundObject,_listener;
     [SerializeField] int _prefIsmi;
 
     void Start()
@@ -19,7 +19,7 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _mainCamera.transform.GetComponent<AudioListener>().enabled = true;
+                _listener.transform.GetComponent<AudioListener>().enabled = true;
 
             }
         }
@@ -33,7 +33,7 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _mainCamera.transform.GetComponent<AudioListener>().enabled = false;
+                _listener.transform.GetComponent<AudioListener>().enabled = false;
             }
         }
     }
@@ -52,7 +52,7 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _mainCamera.transform.GetComponent<AudioListener>().enabled =false;
+                _listener.transform.GetComponent<AudioListener>().enabled =false;
             }
         }
         else
@@ -66,7 +66,7 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _mainCamera.transform.GetComponent<AudioListener>().enabled = true;
+                _listener.transform.GetComponent<AudioListener>().enabled = true;
 
             }
         }
