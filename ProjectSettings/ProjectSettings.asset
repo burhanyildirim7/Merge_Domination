@@ -160,7 +160,7 @@ PlayerSettings:
     iPhone: com.BurhanYildirim.MergeDomination
   buildNumber:
     Standalone: 0
-    iPhone: 5
+    iPhone: 7
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
