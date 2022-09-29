@@ -24,12 +24,12 @@ public class EnemySpawnerScript : MonoBehaviour
     void FixedUpdate()
     {
         Debug.Log("EnemySpawnRate : " + PlayerPrefs.GetFloat("EnemySpawnRate"));
-        
-        if (PlayerPrefs.GetFloat("EnemySpawnRate")<0.2f)
+
+        if (PlayerPrefs.GetFloat("EnemySpawnRate") < 0.2f)
         {
-            PlayerPrefs.SetFloat("EnemySpawnRate",.2f);
+            PlayerPrefs.SetFloat("EnemySpawnRate", .2f);
         }
-        
+
         if (GameController.instance.isContinue)
         {
             if (GameObject.Find("SOKETLER_PARENT").transform.GetComponent<AnaSoketKontrol>()._SYSTEMCONTROL)
@@ -58,6 +58,8 @@ public class EnemySpawnerScript : MonoBehaviour
                         _enemyList[0].transform.parent = null;
                         _enemyList[0].transform.GetComponent<BoxCollider>().enabled = true;
                         _enemyList[0].transform.GetComponent<StickmanAnimation>()._dur = false;
+                        _enemyList[0].transform.GetComponent<Animator>().SetBool("run", true);
+                        _enemyList[0].transform.GetComponent<StickmanAnimation>()._secildi = false;
                         _enemyList.RemoveAt(0);
                     }
                     else
@@ -67,7 +69,9 @@ public class EnemySpawnerScript : MonoBehaviour
                         _bossList[0].transform.position = _spawnPointsList[_randomSayi].transform.position;
                         _bossList[0].transform.GetComponent<BoxCollider>().enabled = true;
                         _bossList[0].transform.GetComponent<StickmanAnimation>()._dur = false;
+                        _enemyList[0].transform.GetComponent<StickmanAnimation>()._secildi = false;
                         _bossList[0].transform.parent = null;
+                        _enemyList[0].transform.GetComponent<Animator>().SetBool("slowRun", true);
                         _bossList.RemoveAt(0);
                     }
                 }

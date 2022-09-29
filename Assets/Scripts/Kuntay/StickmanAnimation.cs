@@ -10,8 +10,8 @@ public class StickmanAnimation : MonoBehaviour
     Animator _stickmanAnimator;
 
     [SerializeField] Slider _canBari2, _canBari5;
-    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX,_parentObject;
-    [SerializeField] Material _griMat,_kirmiziMat;
+    [SerializeField] GameObject _moneyObject, _splashObject, _vurulmaFX, _parentObject;
+    [SerializeField] Material _griMat, _kirmiziMat;
     [SerializeField] List<GameObject> _moneyPoint = new List<GameObject>();
     private GameObject _tempMoney;
     public bool _isboss, _dur;
@@ -136,6 +136,7 @@ public class StickmanAnimation : MonoBehaviour
 
             if (_canBari.value <= 0)
             {
+                //transform.GetChild(transform.childCount - 1).gameObject.SetActive(false);
                 transform.GetComponent<BoxCollider>().enabled = false;
                 _stickmanAnimator.SetBool("run", false);
                 _stickmanAnimator.SetBool("slowRun", false);
@@ -201,7 +202,7 @@ public class StickmanAnimation : MonoBehaviour
                 AppMetrica.Instance.ReportEvent("oldurulen_dusman_sayisi - " + PlayerPrefs.GetInt("OldurulenDusmanSayisi").ToString());
                 AppMetrica.Instance.SendEventsBuffer();
 
-                Invoke("_karakteriGeriAl",3f);
+                Invoke("_karakteriGeriAl", 3f);
                 //Destroy(gameObject, 3f);
             }
         }
@@ -223,37 +224,50 @@ public class StickmanAnimation : MonoBehaviour
     private void _karakteriGeriAl()
     {
         transform.parent = _parentObject.transform;
+        _splashObject.gameObject.SetActive(false);
         //_dur = false;
         if (_isboss)
         {
             transform.parent.parent.GetComponent<EnemySpawnerScript>()._bossList.Add(transform.gameObject);
+            _canBari5.value = 10;
+            _canBari2.value = 2;
+            _canBari.value = 10;
             _stickmanAnimator.SetBool("run", false);
             _stickmanAnimator.SetBool("slowRun", true);
             _stickmanAnimator.SetBool("injuredRun", false);
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
-            _canBari5.value = 10;
-            _canBari2.value = 2;
-            _canBari.value = 10;
+
             _canBari.gameObject.transform.parent.transform.gameObject.SetActive(true);
 
         }
         else
         {
             transform.parent.parent.GetComponent<EnemySpawnerScript>()._enemyList.Add(transform.gameObject);
+            _canBari5.value = 10;
+            _canBari2.value = 2;
+            _canBari.value = 2;
             _stickmanAnimator.SetBool("run", true);
             _stickmanAnimator.SetBool("slowRun", false);
             _stickmanAnimator.SetBool("injuredRun", false);
             _stickmanAnimator.SetBool("die", false);
             _stickmanAnimator.SetBool("attack", false);
-            _canBari5.value = 10;
-            _canBari2.value = 2;
-            _canBari.value = 2;
+
             _canBari.gameObject.transform.parent.transform.gameObject.SetActive(true);
 
         }
-        transform.localPosition = Vector3.zero;
+        //transform.localPosition = Vector3.zero;
+        transform.DOLocalMove(Vector3.zero, 0.1f);
         transform.GetChild(1).GetChild(2).transform.GetComponent<Renderer>().material = _kirmiziMat;
+
+        _secildi = false;
+
+        Invoke("Kapat", 0.2f);
+
+    }
+
+    private void Kapat()
+    {
         gameObject.SetActive(false);
     }
 }

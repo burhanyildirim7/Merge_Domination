@@ -6,10 +6,12 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] int _hiz;
 
+    public GameObject _hedef;
+
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject,2f);
+        Destroy(gameObject, 2f);
     }
 
     // Update is called once per frame
@@ -17,6 +19,7 @@ public class Projectile : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
+            transform.LookAt(_hedef.transform.position);
             transform.Translate(Vector3.forward * Time.deltaTime * _hiz);
         }
     }

@@ -9,11 +9,11 @@ public class KafaKontrol : MonoBehaviour
     [SerializeField] GameObject _connectionControlObjesi;
     public GameObject _target;
 
-    [SerializeField]private List<GameObject> _targetList = new List<GameObject>();
+    [SerializeField] private List<GameObject> _targetList = new List<GameObject>();
 
     private bool _locked;
 
-    private float _fireRate,_timer,_timer2;
+    private float _fireRate, _timer, _timer2;
     private int _namlusayac;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class KafaKontrol : MonoBehaviour
         {
             for (int i = 0; i < _targetList.Count; i++)
             {
-                if (_targetList[i]==null)
+                if (_targetList[i] == null)
                 {
                     _targetList.Remove(_targetList[i]);
                 }
@@ -42,7 +42,7 @@ public class KafaKontrol : MonoBehaviour
                     {
                         for (int i = 0; i < _targetList.Count; i++)
                         {
-                            if (_targetList[i].transform.GetComponent<StickmanAnimation>()._secildi == false)
+                            if (_targetList[i].transform.GetComponent<StickmanAnimation>()._secildi == false && _targetList[i].activeSelf)
                             {
                                 if (_targetList[i].transform.GetComponent<StickmanAnimation>()._isboss)
                                 {
@@ -64,33 +64,41 @@ public class KafaKontrol : MonoBehaviour
                 }
                 else if (_locked == true && transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde)
                 {
-                    _timer += Time.deltaTime;
-                    _timer2 += Time.deltaTime;
-                    _fireRate = PlayerPrefs.GetFloat("FireRate");
-                    if (_target.transform.GetComponent<StickmanAnimation>()._canBari.value > 0)
+                    if (_target.activeSelf)
                     {
-                        transform.LookAt(_target.transform.position);
-                        if (_timer > PlayerPrefs.GetFloat("FireRate"))
+                        _timer += Time.deltaTime;
+                        _timer2 += Time.deltaTime;
+                        _fireRate = PlayerPrefs.GetFloat("FireRate");
+                        if (_target.transform.GetComponent<StickmanAnimation>()._canBari.value > 0)
                         {
-                            if (_timer2 > 0.2f * PlayerPrefs.GetFloat("FireRate"))
+                            transform.LookAt(_target.transform.position);
+                            if (_timer > PlayerPrefs.GetFloat("FireRate"))
                             {
-                                _timer2 = 0;
-                                Atesleme();
-                                _namlusayac++;
+                                if (_timer2 > 0.2f * PlayerPrefs.GetFloat("FireRate"))
+                                {
+                                    _timer2 = 0;
+                                    Atesleme();
+                                    _namlusayac++;
+                                }
+                                if (_namlusayac == _namluList.Count)
+                                {
+                                    _timer = 0;
+                                }
                             }
-                            if (_namlusayac == _namluList.Count)
-                            {
-                                _timer = 0;
-                            }
+                        }
+                        else
+                        {
+                            _locked = false;
+                            _targetList.Remove(_target);
                         }
                     }
                     else
                     {
                         _locked = false;
-                        _targetList.Remove(_target);
                     }
+
                 }
-                else if (transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde==false)
+                else if (transform.parent.transform.parent.transform.GetComponent<TurretMergeKontrol>()._objeYerde == false)
                 {
                     _locked = false;
                 }
@@ -103,18 +111,31 @@ public class KafaKontrol : MonoBehaviour
 
     private void Atesleme()
     {
-        if (_namlusayac==_namluList.Count)
+        if (_namlusayac == _namluList.Count)
         {
             _namlusayac = 0;
         }
-        _namluList[_namlusayac].transform.GetChild(0).transform.GetComponent<NamluKontrol>().FireProjectile();
+        _namluList[_namlusayac].transform.GetChild(0).transform.GetComponent<NamluKontrol>().FireProjectile(_target);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="enemy")
+        if (other.tag == "enemy")
         {
             _targetList.Add(other.gameObject.transform.parent.gameObject);
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "enemy")
+        {
+            Debug.Log("CIKTI --- " + other.gameObject.transform.parent.gameObject);
+            _targetList.Remove(other.gameObject.transform.parent.gameObject);
+            //other.gameObject.transform.parent.gameObject.GetComponent<StickmanAnimation>()._secildi = false;
+            //_target = null;
+            //_locked = false;
         }
     }
 
