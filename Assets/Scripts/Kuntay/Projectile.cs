@@ -17,6 +17,14 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (PlayerPrefs.GetInt("SesKapat") == 0)
+        {
+            transform.GetComponent<AudioSource>().enabled = true;
+        }
+        else
+        {
+            transform.GetComponent<AudioSource>().enabled = false;
+        }
         if (GameController.instance.isContinue)
         {
             transform.LookAt(_hedef.transform.position);

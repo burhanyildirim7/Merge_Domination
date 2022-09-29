@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hiz: 15
+  _hedef: {fileID: 0}
 --- !u!82 &-3385673521378866242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -248,7 +249,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926296033756000323}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d937fe4519dab4e18b300cf1dbc5d345, type: 3}

@@ -90,7 +90,14 @@ public class StickmanAnimation : MonoBehaviour
 
         if (other.tag == "projectile")
         {
-            transform.GetComponent<AudioSource>().Play();
+            if (PlayerPrefs.GetInt("SesKapat")==0)
+            {
+                transform.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+
+            }
             Destroy(other.gameObject);
             if (_canBari.value > 0f)
             {

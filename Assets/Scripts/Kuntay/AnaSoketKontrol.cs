@@ -28,7 +28,13 @@ public class AnaSoketKontrol : MonoBehaviour
                 if (PlayerPrefs.GetInt("GeneratorSound")==0)
                 {
                     PlayerPrefs.SetInt("GeneratorSound", 1);
-                    _generatorOpenSound.transform.GetComponent<AudioSource>().Play();
+                    if (PlayerPrefs.GetInt("SesKapat") == 0)
+                    {
+                        _generatorOpenSound.transform.GetComponent<AudioSource>().Play();
+                    }
+                    else
+                    {
+                    }
                 }
                 else
                 {
@@ -42,7 +48,13 @@ public class AnaSoketKontrol : MonoBehaviour
                 if (PlayerPrefs.GetInt("GeneratorSound") == 1)
                 {
                     PlayerPrefs.SetInt("GeneratorSound", 0);
-                    _generatorCloseSound.transform.GetComponent<AudioSource>().Play();
+                    if (PlayerPrefs.GetInt("SesKapat") == 0)
+                    {
+                        _generatorCloseSound.transform.GetComponent<AudioSource>().Play();
+                    }
+                    else
+                    {
+                    }
                 }
                 else
                 {

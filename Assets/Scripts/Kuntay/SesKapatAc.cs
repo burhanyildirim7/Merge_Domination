@@ -19,7 +19,9 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _listener.transform.GetComponent<AudioListener>().enabled = true;
+               // _listener.transform.GetComponent<AudioListener>().enabled = true;
+                PlayerPrefs.SetInt("SesKapat", 0);
+                
 
             }
         }
@@ -33,7 +35,9 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _listener.transform.GetComponent<AudioListener>().enabled = false;
+               // _listener.transform.GetComponent<AudioListener>().enabled = false;
+                PlayerPrefs.SetInt("SesKapat", 1);
+                
             }
         }
     }
@@ -52,7 +56,9 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _listener.transform.GetComponent<AudioListener>().enabled =false;
+               // _listener.transform.GetComponent<AudioListener>().enabled =false;
+                PlayerPrefs.SetInt("SesKapat",1);
+                
             }
         }
         else
@@ -66,8 +72,9 @@ public class SesKapatAc : MonoBehaviour
             }
             else
             {
-                _listener.transform.GetComponent<AudioListener>().enabled = true;
-
+                //_listener.transform.GetComponent<AudioListener>().enabled = true;
+                PlayerPrefs.SetInt("SesKapat", 0);
+                
             }
         }
     }
