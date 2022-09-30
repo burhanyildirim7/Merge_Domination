@@ -14,7 +14,14 @@ public class OpenUpgrade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerPrefs.GetInt("SesKapat") == 0)
+        {
+            transform.GetComponent<AudioSource>().enabled = true;
+        }
+        else
+        {
+            transform.GetComponent<AudioSource>().enabled = false;
+        }
     }
 
     public void UpgradePanelAcma()

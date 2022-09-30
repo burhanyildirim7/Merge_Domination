@@ -14,7 +14,15 @@ public class moneyToplamaScript : MonoBehaviour
         if (other.tag== "toplayici")
         {
             MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
-            transform.GetComponent<AudioSource>().Play();
+            if (PlayerPrefs.GetInt("SesKapat") == 0)
+            {
+                transform.GetComponent<AudioSource>().enabled = true;
+                transform.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                transform.GetComponent<AudioSource>().enabled = false;
+            }
             transform.GetComponent<BoxCollider>().enabled = false;
             PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income")*GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
             UIController.instance.SetGamePlayScoreText();

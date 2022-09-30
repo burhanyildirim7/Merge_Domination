@@ -23,6 +23,18 @@ public class TemaDegistir : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (PlayerPrefs.GetInt("SesKapat") == 0)
+        {
+            transform.GetComponent<AudioSource>().enabled = true;
+        }
+        else
+        {
+            transform.GetComponent<AudioSource>().enabled = false;
+        }
+    }
+
     public void TemaDegistirButton()
     {
         MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);

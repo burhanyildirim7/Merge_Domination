@@ -269,6 +269,7 @@ MonoBehaviour:
   _paraBlastFX: {fileID: 190236, guid: 39f586f40e7d928499bfe946ffb04ad5, type: 3}
   _paraTextCanvas: {fileID: 6956231531489499595}
   _ucusHedefObjesi: {fileID: 7110846413992989445}
+  _parentObject: {fileID: 0}
 --- !u!82 &-7125681373791708128
 AudioSource:
   m_ObjectHideFlags: 0

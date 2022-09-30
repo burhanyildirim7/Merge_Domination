@@ -43,6 +43,14 @@ public class BuyButtonScript : MonoBehaviour
     {
         if (GameController.instance.isContinue)
         {
+            if (PlayerPrefs.GetInt("SesKapat") == 0)
+            {
+                transform.GetComponent<AudioSource>().enabled = true;
+            }
+            else
+            {
+                transform.GetComponent<AudioSource>().enabled = false;
+            }
             _timer = _timer + Time.deltaTime;
             if (_timer > .1f)
             {
