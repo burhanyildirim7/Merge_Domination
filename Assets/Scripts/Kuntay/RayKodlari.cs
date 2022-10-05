@@ -105,7 +105,7 @@ public class RayKodlari : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                _paraToplayici.transform.position = new Vector3(6, 0, 6);
+                _paraToplayici.transform.position = new Vector3(15, 0, 6);
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitSoketInfo, float.MaxValue, _soketLayerMask))
                 {

@@ -7,11 +7,11 @@ using TMPro;
 
 public class moneyToplamaScript : MonoBehaviour
 {
-    [SerializeField] GameObject _paraBlastFX,_paraTextCanvas,_ucusHedefObjesi,_parentObject;
+    [SerializeField] GameObject _paraBlastFX, _paraTextCanvas, _ucusHedefObjesi, _parentObject;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag== "toplayici")
+        if (other.tag == "toplayici")
         {
             MoreMountains.NiceVibrations.MMVibrationManager.Haptic(MoreMountains.NiceVibrations.HapticTypes.MediumImpact);
             if (PlayerPrefs.GetInt("SesKapat") == 0)
@@ -21,17 +21,19 @@ public class moneyToplamaScript : MonoBehaviour
             }
             else
             {
-                transform.GetComponent<AudioSource>().enabled = false;
+                transform.GetComponent<AudioSource>().enabled = true;
+                transform.GetComponent<AudioSource>().Play();
+                //transform.GetComponent<AudioSource>().enabled = false;
             }
             transform.GetComponent<BoxCollider>().enabled = false;
-            PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income")*GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
+            PlayerPrefs.SetInt("totalScore", PlayerPrefs.GetInt("totalScore") + (int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan));
             UIController.instance.SetGamePlayScoreText();
             _paraTextCanvas.SetActive(true);
-            _paraTextCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = "$"+((int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan)).ToString();
-            _paraTextCanvas.transform.DOLocalMove(_ucusHedefObjesi.transform.localPosition,.5f);
-            Instantiate(_paraBlastFX,null).transform.position=transform.position;
-            transform.DOScale(500,.3f);
-            transform.DOJump(transform.position,1,1,.5f);
+            _paraTextCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = "$" + ((int)(PlayerPrefs.GetFloat("Income") * GameObject.Find("KATSAYI_PARENT").GetComponent<KatsayiHesaplama>()._toplamCarpan)).ToString();
+            _paraTextCanvas.transform.DOLocalMove(_ucusHedefObjesi.transform.localPosition, .5f);
+            Instantiate(_paraBlastFX, null).transform.position = transform.position;
+            transform.DOScale(500, .3f);
+            transform.DOJump(transform.position, 1, 1, .5f);
             Invoke("paraGeriDonme", .55f);
         }
     }

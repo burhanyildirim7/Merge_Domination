@@ -18,7 +18,7 @@ public class BuyButtonScript : MonoBehaviour
             _turretBedel.text = "FREE";
             PlayerPrefs.SetInt("TurretBedelBaslangic", 1);
 
-            PlayerPrefs.SetInt("totalScore", 0);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
+            PlayerPrefs.SetInt("totalScore", 999999);  // TOTAL SCORE BAŞLANGIÇ AYARININ YERİ
             UIController.instance.SetGamePlayScoreText();
 
             PlayerPrefs.SetInt("TurretBedel", 0);
@@ -35,6 +35,7 @@ public class BuyButtonScript : MonoBehaviour
 
             }
             PlayerPrefs.SetInt("MergeAlaniDolulukAdeti", 0);
+            PlayerPrefs.SetInt("totalScore", 999999);
         }
     }
 
